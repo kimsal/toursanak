@@ -1,0 +1,74 @@
+{% include "partials/header.html" %}
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-sm-12 col-xs-12" style="padding-top: 25px;padding-right: 1%;">
+            <div class="col-ms-2 col-xs-12  "></div>
+            <div class="col-ms-8 col-xs-12 row1 panel panel-default" style="padding: 0px;">
+                <div class="row1 " style="min-height: 70px;">
+                    <center>
+                        <label style="padding-top: 15px;font-weight: bold">While not always necessary, sometimes you need to put your DOM</label>
+                        <!--<button class="btn btn-danger " style="padding-top: 5px;">Join</button>-->
+                    </center>
+                </div>
+            </div>
+            <div class="col-ms-2 col-xs-12"></div>
+    </div>
+    </div>
+</div>
+<div class="container mycontainer">
+    <div class="row">
+        {% for tour in tours %}
+             <a href="{% url 'single' tour.slug %}">
+                <div class="col-sm-4 thumbnail text-center" style="background-color:black;">
+                    <center>
+                    {% if tour.feature_image == none %}
+                    
+                       <img alt="" class="img-responsive  mybox1"
+                         src="/static/images/notfound.png" style="height:200px;">
+                    {% else %}
+                        <img alt="" class="img-responsive  mybox1"
+                         src="/{{tour.feature_image}}" style="height:200px;">
+                    {% endif %}
+                    </center>
+                    <div class="caption">
+                        <br><br><br>
+                        <p><h4>{{tour.title}}</h4></p>
+                        <!--<p>Mexico</p> -->
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+     <span id="wrap"></span>
+    </div>
+</div>
+<script>
+var scrollid=15;
+var slug="{{slug}}";
+var tour;
+function yHandler(){
+    var wrap = document.getElementById('wrap');
+    var contentHeight = wrap.offsetHeight;
+    var yOffset = window.pageYOffset; 
+    var y = yOffset + window.innerHeight;
+    if ((window.innerHeight + window.scrollY)+300 >= document.body.scrollHeight) {
+        $.ajax({
+          type: "GET",
+          url: "/scrollCategory/"+slug+"/"+scrollid,
+            success: function(response) {
+                tours=JSON.parse(response);
+                console.log("result "+scrollid+"= "+response);
+                for(var i=0;i<tours.length;i++) {
+                   wrap.innerHTML+="<a href='"+tours[i].fields.slug+"'><div class='col-sm-4 thumbnail text-center' style='background-color:black;'><center><img alt='' class='img-responsive  mybox1'src='/"+tours[i].fields.feature_image+"' style='height:200px;'></center><div class='caption'><br><br><br><p><h4>"+tours[i].fields.title+"</h4></p><p><h6 style='color:white;font-weight: bold;'>price: $"+tours[i].fields.price+"</h6></p></div></div></a>";
+                }
+            }
+        });
+        scrollid=scrollid+3;
+    }
+}
+window.onscroll = yHandler;
+</script>
+
+</body>
+</html>

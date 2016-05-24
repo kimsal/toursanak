@@ -1,0 +1,43 @@
+{% include "partials/header.html" %}
+<div class="container">
+    <div class="row">
+    <div class="col-sm-12 col-xs-12" style="padding-top: 25px;padding-right: 1%;">
+            <div class="col-ms-2 col-xs-12  "></div>
+            <div class="col-ms-8 col-xs-12 row1 panel panel-default" style="padding: 0px;">
+                <div class="row1 " style="min-height: 70px;">
+                    <center>
+                        <label style="padding-top: 15px;font-weight: bold">While not always necessary, sometimes you need to put your DOM</label>
+                        <!--<button class="btn btn-danger " style="padding-top: 5px;">Join</button>-->
+                    </center>
+                </div>
+            </div>
+            <div class="col-ms-2 col-xs-12"></div>
+    </div>
+    </div>
+</div>
+<!--end of panel -->
+<!--start box image-->
+<div class="container mycontainer">
+    <div class="row">
+        {% for tour in tours %}
+             <a href="{% url 'single' tour.slug %}">
+                <div class="col-sm-4 thumbnail text-center" style="background-color:black;">
+                    <center>
+                        <img alt="" class="img-responsive  mybox1"
+                         src="/{{tour.imagename}}" style="height:200px;">
+                    </center>
+                    <div class="caption">
+                        <br><br><br>
+                        <p><h4>{{tour.title}}</h4></p>
+                        <p><h6 style="color:white;font-weight: bold;">Price:100$</h6></p>
+                        <!--<p>Mexico</p> -->
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!--end box image-->
+</body>
+</html>

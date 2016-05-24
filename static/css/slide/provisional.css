@@ -1,0 +1,51 @@
+
+
+/*Provisional CSS*/
+
+
+
+@media all and (max-width:640px) {
+	.menu--button {
+		display:block;
+	}
+	.cover-subtitle {
+  	  font-size:11px;
+	}
+}
+
+section {
+	display:none;
+}
+
+.section-selected {
+	display:block;
+}
+.wrapper {
+    /*background-color:transparent;*/
+    overflow: hidden;    
+ 
+    max-width: 680px;
+
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.cover {
+}
+
+@media all and (max-width:400px) {
+	.cover-title {
+		font-size:15px;
+	}
+	.cover-description {
+		font-size:12px;
+	}	
+}
+
+/*style="background-image: url('img/slides/00.jpg')"*/
+
+.cover-img__a {
+}
+
+
+

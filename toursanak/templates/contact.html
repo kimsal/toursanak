@@ -1,0 +1,142 @@
+{% include "partials/header.html" %}
+
+<div class="banner_con">
+    <center style="color: white;padding-right:2%;">
+        <label class="myadd1">
+            <a  style="color:white;">
+            Contact us by Email and Your name Below...
+            </a>
+        </label>
+    </center>
+</div>
+
+<div class="myhead_con" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/static/images/contact-us-banner.jpg");'>
+    <div class="container">
+        <center>
+            <label class="boxbanner_con" style=";font-size: 25px;margin-bottom: 33px;">
+                Enjoy with us Soon!
+            </label>
+            <br/>
+            <label class="boxbanner_con">
+               Happy To See you all of you soon.
+            </label>
+        </center>
+    </div>            
+</div>         
+
+<!--start of contact-->
+<br/>
+ <div class="container">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 main_content">
+        {% if messages %}
+                <center>
+               {% for message in messages %}
+                    {% if 'error' in message.tags %}
+                        <div class="alert alert-danger">
+                          {{ message }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success">
+                          {{ message }}
+                        </div>
+                    {%endif%}   
+                {% endfor %}
+                </center>
+        {% endif %}
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <form class="form-horizontal" role="form" name="ContactForm" method="POST" action="/createContact/">
+                        {% csrf_token %}
+                        
+                        <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1 ">
+                        </div>
+                        <fieldset>
+                            <div class="form-group">
+                                <h4 class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                    How can they reach you?
+                                </h4>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                                    {{ frm.contactName }}
+                                    <!-- <input class="form-control input-lg" id="txtName" placeholder="Name" type="text"> -->
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                                    {{ frm.contactEmail }}
+                                   <!--  <input class="form-control input-lg" id="txtEmail" placeholder="Email" type="text"> -->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                    Do you have any questions or requests?
+                                </h4>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                    {{ frm.contactDescription }}
+                                    <!-- <textarea class="form-control" rows="3" id="txtComment" placeholder="Enter Comments here ..."></textarea> -->
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="row " >
+                        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 footer-button btnrequest" style="">
+                            <div class="hidden-xs col-lg-1 col-md-1 col-sm-1"></div>
+                            <center>
+                            <button class="button btn-request btn btn-success" type="submit" name="button">
+                               Send
+                            </button>
+                             <button class="btn btn btn-default" onclick="window.history.back();">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>Back
+                            </button>
+                            <button class="btn btn btn-default"><i class="fa fa-ban" aria-hidden="true"></i>Reset</button>
+                            </center>
+                        </div>
+                    </div>
+            </form>
+        </div>
+        </div>
+
+
+<!--end of contact-->
+
+<script src="/static/js/jquery-ui.js" type="text/javascript"></script>
+<script src="/static/js/custome.js" type="text/javascript"></script>
+<link href="/static/css/jquery-ui.css" rel="stylesheet">
+
+<!-- end modal contact-->
+</body>
+</html>
+<style type="text/css">
+    .banner_con{
+        width: 100%;
+        background-color: #1F323F;
+        margin-top: 50px;
+        /*min-height: 50px;*/
+        line-height:50px;
+        clear: both;
+    }
+    .banner_con a:hover{
+        text-decoration: none;
+    }
+    .myhead_con{
+         clear: both;
+    width: 100%;
+    padding-top:120px;
+     background-color: transparent;
+    background-size: cover;
+    background-position: center center;
+background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: black;
+
+    }
+    .boxbanner_con{
+        color: white;
+    }
+</style>
