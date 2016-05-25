@@ -27,8 +27,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', "toursanak.views.index", name='index'),
     url(r'^(\d+)/(\d+)/booking/', "toursanak.views.booking", name='booking'),
-    
-
     url(r'^contact/', "toursanak.views.contact", name='contact'),
     url(r'^cat/(?P<slug>[-\w\d]+)/$', 'toursanak.views.category', name='category'),
     url(r'^createContact/', "toursanak.views.createContact", name='createContact'),
