@@ -124,6 +124,7 @@ def get_query(query_string, search_fields):
             query = query & or_query
     return query
 def search(request):
+  #return HttpResponse("HELLO")
 	#search_data=Tour.objects.raw("SELECT * FROM toursanak_tour WHERE to_tsvector('simple', concat_ws(' ', title, description)) @@ 'kimsal' ORDER BY toursanak_tour.id DESC LIMIT 15;".format(request.GET['q']))
 	search_data=Tour.objects.raw("SELECT * FROM toursanak_tour where  to_tsvector('simple', concat_ws(' ', title, description,short_description)) @@ to_tsquery('{}') ORDER BY id DESC limit 15".format(request.GET['q'].replace(' ','&')))
 	return render(request,'search.html',{'tours':search_data})
