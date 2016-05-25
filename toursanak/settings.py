@@ -3,7 +3,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_a8a)rq6r&9+yng1f^8fak#@go9&)oh+0c(yi6%+b_yab%jim6'
 DEBUG = True
 ALLOWED_HOSTS = []
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,9 +22,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'toursanak.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -43,33 +40,28 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'toursanak.wsgi.application'
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'toursanak',
-        'USER': 'django',
-        'PASSWORD': 'fMQNlgJBNx',
+        'USER': 'toursanak',
+        'PASSWORD': 'toursanak',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[  os.path.join(BASE_DIR,"static") ]
 STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),"static")

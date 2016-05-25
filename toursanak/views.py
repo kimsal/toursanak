@@ -5,14 +5,10 @@ from django.core import serializers
 from .forms import *
 from django.contrib import messages
 from itertools import chain
-
 import re
-
 from django.db.models import Q
-
 #db.execute('CREATE FULLTEXT INDEX toursanak_title ON toursanak_tour (title, body)')
 def index(request):
-  #tours=''
   tours = Tour.objects.raw('select * from toursanak_tour ORDER BY toursanak_tour.id DESC limit 15')
   return render(request,'index.html',{'tours':tours})
 def contact(request):
@@ -20,10 +16,8 @@ def contact(request):
 	context={
 		"frm":frm,
 	}
-	#return HttpResponse(frm)
 	return render(request,'contact.html',context)
 def single(request, slug):
-	#tours=Tour.objects.filter(slug=slug)
 	tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map, array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
 	tab=0
 	related=''
@@ -55,12 +49,9 @@ def createContact(request):
 				description=form.cleaned_data['contactDescription']
 				r=Contact(name=name,email=email,description=description)
 				r.save()
-				#return HttpResponse(r)
 				messages.add_message(request, messages.SUCCESS, "Your request sent succesfully. We'll contact you soon!")
-				#return redirect('/',{})
 				return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 			except:
-				#messages.add_message(request, messages.SUCCESS, 'Sorry, Internal error!')
 				return redirect('/contact',{'name':name,'email':email,'description':description})
 		else:
 			messages.add_message(request, messages.ERROR, "Your information is not valid!")
@@ -69,16 +60,11 @@ def createContact(request):
 		messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
 		return redirect('/contact',{})
 def PostScroll(request,id):
-	#return HttpResponse("select toursanak_tour.id,toursanak_image.id,toursanak_tour.title,toursanak_tour.slug,toursanak_tour.price,toursanak_image.imagename from toursanak_tour inner join toursanak_image on toursanak_tour.id=toursanak_image.tour_id GROUP BY toursanak_image.imagename ORDER BY toursanak_tour.id DESC limit {},{}".format(id,help))
 	ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit {},3".format(id))
-	#ScrollTours = chain(ScrollTours,ScrollTours)
-	
 	data = serializers.serialize('json', ScrollTours)
 	return HttpResponse(data)
 def scrollCategory(request,slug,id):
-	#return HttpResponse(id)
 	ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit {},3".format(slug,id))
-	#ScrollTours = Tour.objects.raw("select * from toursanak_tour")
 	data = serializers.serialize('json', ScrollTours)
 	return HttpResponse(data)
 def booking(request,tour_id,schedule_id):
@@ -86,7 +72,6 @@ def booking(request,tour_id,schedule_id):
 	schedule = Schedule.objects.raw("select * from toursanak_schedule where id={} limit 1".format(schedule_id))
 	return render(request,'booking.html',{'schedule':schedule,'tour_id':tour_id,'frm':frm})
 def createBooking(request,tour_id,schedule_id):
-	#return HttpResponse(tour_id)
 	if request.method == 'POST':
 		form=BookingForm(request.POST)
 		if form.is_valid():
@@ -96,9 +81,7 @@ def createBooking(request,tour_id,schedule_id):
 				description=form.cleaned_data['bookingDescription']
 				r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
 				r.save()
-				#return HttpResponse(r)
 				messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
-				#return redirect('/',{})
 				return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 			except:
 				messages.add_message(request, messages.ERROR, 'Sorry, Internal error!')
@@ -109,17 +92,12 @@ def createBooking(request,tour_id,schedule_id):
 	else:
 		messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
 		return redirect('/{}/{}/booking'.format(tour_id,schedule_id),{})
-
-
-
-
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
                     normspace=re.compile(r'\s{2,}').sub):
     ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
         and grouping quoted words together.
         Example:
-        
         >>> normalize_query('  some random  words "with   quotes  " and   spaces')
         ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
     
@@ -146,21 +124,6 @@ def get_query(query_string, search_fields):
             query = query & or_query
     return query
 def search(request):
-	#return HttpResponse('dd')
-	#param1 = request.GET.get('param1')
-	#tour=Tour.objects.raw("select * from toursanak_tour where title like 't'")
-	#tour=Tour.objects.search('tour')
-	#return HttpResponse(tour)
-	#return render(request,'search.html',{'tour':tour})
-	query_string = ''
-	found_entries = None
-	if ('q' in request.GET) and request.GET['q'].strip():
-		query_string = request.GET['q']
-        
-        entry_query = get_query(query_string, ['title', 'body',])
-        
-        found_entries = Entry.objects.filter(entry_query).order_by('id')
-
-   	return render_to_response('search.html',
-                          { 'query_string': query_string, 'found_entries': found_entries },
-                          context_instance=RequestContext(request))
+	#search_data=Tour.objects.raw("SELECT * FROM toursanak_tour WHERE to_tsvector('simple', concat_ws(' ', title, description)) @@ 'kimsal' ORDER BY toursanak_tour.id DESC LIMIT 15;".format(request.GET['q']))
+	search_data=Tour.objects.raw("SELECT * FROM toursanak_tour where  to_tsvector('simple', concat_ws(' ', title, description,short_description)) @@ to_tsquery('{}') ORDER BY id DESC limit 15".format(request.GET['q'].replace(' ','&')))
+	return render(request,'search.html',{'tours':search_data})

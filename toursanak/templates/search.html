@@ -17,8 +17,9 @@
 </div>
 <!--end of panel -->
 <!--start box image-->
-<div class="container mycontainer">
-    <div class="row">
+<script type="text/javascript">var help=0</script>
+<div class="container mycontainer" >
+    <div class="row" id="mainContent">
         {% for tour in tours %}
              <a href="{% url 'single' tour.slug %}">
                 <div class="col-sm-4 thumbnail text-center" style="background-color:black;">
@@ -34,10 +35,16 @@
                     </div>
                 </div>
             </a>
+            <script type="text/javascript">help=1</script>
         {% endfor %}
     </div>
 </div>
-
+<script type="text/javascript">
+if(help==0){
+    var html="<center style='font-weight:bold;color:red'>Sorry we couldn't find any data for this keyword.</center>";
+    document.getElementById('mainContent').innerHTML=html;
+}
+</script>
 <!--end box image-->
 </body>
 </html>
