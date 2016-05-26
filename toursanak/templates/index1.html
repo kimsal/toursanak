@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing</title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style type="text/css">
+     body {
+    padding: 60px 0;
+  }
+    .navbar-header button:last-of-type, .navbar-header button:last-of-type:focus {
+        border: 0;
+        background: transparent;
+    }
+    .navbar-collapse {
+    position: relative;
+    padding-top: 30px !important;
+    max-height: 270px;
+  }
+    .navbar-collapse form[role="search"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    z-index: 0;
+        border: 0;
+    }
+  .navbar-collapse form[role="search"] button,
+  .navbar-collapse form[role="search"] input {
+    padding: 8px 12px;
+    border-radius: 0px;
+    border-width: 0px;
+    color: rgb(119, 119, 119);
+    background-color: rgb(248, 248, 248);
+    border-color: rgb(231, 231, 231);
+    box-shadow: none;
+    outline: none;
+  }
+  .navbar-collapse form[role="search"] input {
+    font-size: 14pt;
+    font-style: italic;
+    color: rgb(160, 160, 160);
+    box-shadow: none;
+  }
+  .navbar-collapse form[role="search"] button[type="reset"] {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .navbar-collapse {
+      padding-top: 0px !important;
+      padding-right: 38px !important;
+            white-space : nowrap;   
+        }
+    .navbar-collapse form[role="search"] {
+      width: 38px;
+    }
+    .navbar-collapse form[role="search"] button,
+    .navbar-collapse form[role="search"] input {
+      padding: 15px 12px;
+    }
+    .navbar-collapse form[role="search"] input {
+      font-size: 18pt;
+      opacity: 0;
+      display: none;            
+            height: 50px;
+    }
+    .navbar-collapse form[role="search"].active {
+        -moz-transition: width: 0.5s linear;
+          -ms-transition: width 0.5s linear;
+          -webkit-transition: width 0.5s linear;
+          transition: width 0.5s linear;
+            width: 100%;
+        }
+        .navbar-collapse form[role="search"].active .input-group-btn {
+            width: 1%
+        }
+        .navbar-collapse form[role="search"].active button,
+    .navbar-collapse form[role="search"].active input {
+        display: table-cell;
+            opacity: 1;
+    }
+      .navbar-collapse form[role="search"].active input {
+      width: 100%;
+            text-align: right;
+    }
+  }
+  </style>
+</head>
+<script type="text/javascript">
+   $(function () {
+        // Remove Search if user Resets Form or hits Escape!
+    $('body, .navbar-collapse form[role="search"] button[type="reset"]').on('click keyup', function(event) {
+      console.log(event.currentTarget);
+      if (event.which == 27 && $('.navbar-collapse form[role="search"]').hasClass('active') ||
+        $(event.currentTarget).attr('type') == 'reset') {
+        closeSearch();
+      }
+    });
+    function closeSearch() {
+            var $form = $('.navbar-collapse form[role="search"].active')
+        $form.find('input').val('');
+      $form.removeClass('active');
+    }
+
+    // Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
+    $(document).on('click', '.navbar-collapse form[role="search"]:not(.active) button[type="submit"]', function(event) {
+      event.preventDefault();
+      var $form = $(this).closest('form'),
+        $input = $form.find('input');
+      $form.addClass('active');
+      $input.focus();
+    });
+        // Autofocus for collapsed mode
+        $(document).on('click', '.navbar-header button.navbar-toggle:last-of-type', function(event) {
+        var $form = $('.navbar-collapse form[role="search"]').find('input').focus();
+        });
+        
+        // ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
+    // if your form is ajax remember to call `closeSearch()` to close the search container
+    $(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
+      event.preventDefault();
+      var $form = $(this).closest('form'),
+        $input = $form.find('input');
+      $('#showSearchTerm').text($input.val());
+            closeSearch()
+      });
+    });
+</script>
+
+<body>
+   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Search</span>
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+                <a class="navbar-brand" href="#"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          
+        </ul>
+        
+          <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+
+                <form class="navbar-form navbar-right" role="search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button type="reset" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove">
+                  <span class="sr-only">Close</span>
+                </span>
+              </button>
+              <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search">
+                  <span class="sr-only">Search</span>
+                </span>
+              </button>
+            </span>
+          </div>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+    
+    <div class="container">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+              <img src="../">
+          </div>
+      </div>
+    </div>
+</body>
+</html>

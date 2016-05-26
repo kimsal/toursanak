@@ -50,8 +50,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'toursanak',
-        'USER': 'django',
-        'PASSWORD': 'fMQNlgJBNx',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -75,3 +75,13 @@ STATICFILES_DIRS=[  os.path.join(BASE_DIR,"static") ]
 STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),"static")
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'toursanak',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
