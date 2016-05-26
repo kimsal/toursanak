@@ -1,3 +1,5 @@
 ./toursanak/migrations
 ./toursanak/settings.py
-./static/images
+./static/images/banner
+./static/images/feature_image
+./static/images/albums
