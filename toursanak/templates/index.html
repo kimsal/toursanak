@@ -9,7 +9,7 @@
                 <!--</div>-->
             <!--</div>-->
         <!--</div>-->
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="wrap">
              {% for tour in tours %}
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 25px;">
                     <div class="hovereffect">
@@ -27,6 +27,32 @@
                 </div>
             {% endfor %}
         </div>
-    </div> 
+    </div>
+<script>
+var scrollid=15;
+var tour;
+function yHandler(){
+    var wrap = document.getElementById('wrap');
+    var contentHeight = wrap.offsetHeight;
+    var yOffset = window.pageYOffset; 
+    var y = yOffset + window.innerHeight;
+    if ((window.innerHeight + window.scrollY)+300 >= document.body.scrollHeight) {
+        $.ajax({
+          type: "GET",
+          url: "/scroll/"+scrollid,
+            success: function(response) {
+                tours=JSON.parse(response);
+                console.log("result "+scrollid+"= "+response);
+                for(var i=0;i<tours.length;i++) {
+                   wrap.innerHTML+="<a href='"+tours[i].fields.slug+"'><div class='col-sm-4 thumbnail text-center' style='background-color:black;'><center><img alt='' class='img-responsive  mybox1'src='/"+tours[i].fields.feature_image+"' style='height:200px;'></center><div class='caption'><br><br><br><p><h4>"+tours[i].fields.title+"</h4></p><p><h6 style='color:white;font-weight: bold;'>price: $"+tours[i].fields.price+"</h6></p></div></div></a>";
+                }
+            }
+        });
+        scrollid=scrollid+3;
+    }
+}
+window.onscroll = yHandler;
+</script>
+
 </body>
 </html>

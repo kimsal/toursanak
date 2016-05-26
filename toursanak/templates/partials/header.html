@@ -22,8 +22,8 @@
     {% if request.resolver_match.url_name == 'single' %}
         {% for tour in tours %}
             <title>{{tour.title}}|Toursanak</title>
-           
-           
+
+
         {% endfor %}
     {% elif request.resolver_match.url_name == 'category'%}
         {% for cat in categories %}
@@ -57,7 +57,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="brand" href="#">
-                <img class="img-responsive" src="../images/toursanaklogo.png" style="width: 150px; height: 40px;" alt="">
+                <img class="img-responsive" src="/static/images/toursanaklogo.png" style="width: 150px; height: 40px;" alt="">
             </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
