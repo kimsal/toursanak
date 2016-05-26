@@ -41,7 +41,12 @@
 }
 
 .carousel-control.right span {
-    padding: 15px;
+    padding: 23px;
+}
+.panel-default > .panel-heading {
+    color: #333;
+    background-color:white;
+    border-color:none;
 }
 
 .carousel-control .glyphicon-chevron-left,
