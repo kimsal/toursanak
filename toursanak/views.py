@@ -60,11 +60,11 @@ def createContact(request):
 		messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
 		return redirect('/contact',{})
 def PostScroll(request,id):
-	ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit {},3".format(id))
+	ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit 3 OFFSET {}".format(id))
 	data = serializers.serialize('json', ScrollTours)
 	return HttpResponse(data)
 def scrollCategory(request,slug,id):
-	ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit {},3".format(slug,id))
+	ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit 3 OFFSET {}".format(slug,id))
 	data = serializers.serialize('json', ScrollTours)
 	return HttpResponse(data)
 def booking(request,tour_id,schedule_id):
@@ -124,7 +124,5 @@ def get_query(query_string, search_fields):
             query = query & or_query
     return query
 def search(request):
-  #return HttpResponse("HELLO")
-	#search_data=Tour.objects.raw("SELECT * FROM toursanak_tour WHERE to_tsvector('simple', concat_ws(' ', title, description)) @@ 'kimsal' ORDER BY toursanak_tour.id DESC LIMIT 15;".format(request.GET['q']))
-	search_data=Tour.objects.raw("SELECT * FROM toursanak_tour where  to_tsvector('simple', concat_ws(' ', title, description,short_description)) @@ to_tsquery('{}') ORDER BY id DESC limit 15".format(request.GET['q'].replace(' ','&')))
+	search_data=Tour.objects.raw("SELECT * FROM toursanak_tour where  to_tsvector('simple', concat_ws(' ', title,short_description)) @@ to_tsquery('{}') ORDER BY id DESC limit 15".format(request.GET['q'].replace(' ','&')))
 	return render(request,'search.html',{'tours':search_data})
