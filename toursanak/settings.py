@@ -43,14 +43,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'toursanak.wsgi.application'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'toursanak',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'USER': 'toursanak',
+        'PASSWORD': 'toursanak',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+#kimsal
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'toursanak',
+#         'USER': 'toursanak',
+#         'PASSWORD': 'toursanak',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 AUTH_PASSWORD_VALIDATORS = [
     { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
