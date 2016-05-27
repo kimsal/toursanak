@@ -54,6 +54,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 #kimsal
 # DATABASES = {
 #     'default': {
