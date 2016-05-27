@@ -12,6 +12,7 @@
     -moz-border-radius:0 6px 6px 6px;
     border-radius:0 6px 6px 6px;
     }
+    
 .dropdown-submenu>a:after {
     display:block;
     content:" ";
@@ -236,4 +237,8 @@
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color: rgba(128, 128, 128, 0);
+}
+.myimg{
+    min-height: 100%;
+    width: 100%;
 }

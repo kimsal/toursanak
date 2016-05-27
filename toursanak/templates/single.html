@@ -2,7 +2,7 @@
 <!--start container-->
 <div class="banner1">
     <center style="color:white;line-height: 300%;">
-        <label>
+        <label style="font-family: font-family: 'PT Serif',serif;">
             YesLearn and experience mangrove reforestation
         </label>
         <a href="#">
@@ -30,7 +30,7 @@
                         {{ tour.title }}
                     </label>
                     <br/>
-                    <label style="color: #ffffff;">
+                    <label style="color: #ffffff;font-size:30px;font-family: 'PT Serif',serif;">
                          {{tour.short_description}}
                     </label>
                 </center>
@@ -42,7 +42,7 @@
                         {{ tour.title }}
                     </label>
                     <br/>
-                    <label style="color: #ffffff;">
+                    <label style="color: #ffffff;font-size:30px;    font-family: 'Playfair Display', serif;">
                         {{tour.short_description}}
                     </label>
                 </center>
@@ -249,15 +249,15 @@
         <!--end booking-->
         <!--start similar tour-->
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h4>Similar Tour</h4>
+        <h4 style="font-family: 'Playfair Display', serif;">Similar Tour</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                {% for related in related_posts %}
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding: 0px;">
-                    <div class="hovereffect thumbnail">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " style="padding:0px;" >
+                    <div class="hovereffect thumbnail ">
                         <a href="{% url 'single' related.slug %}">
                         {% if related.feature_image == none %}
-                            <img class="myimg img-responsive" src="/static/images/notfound.png" alt="">
+                            <img class="myimg img-responsive mythumnail1" src="/static/images/notfound.png" alt="">
                             <div class="overlay">
                                 <h2>{{ related.title }}</h2>
                             </div>
@@ -276,7 +276,7 @@
     </div>
     <!--feature image-->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h4 style="padding: 0;margin-left: 15px;">Featured Trips</h4>
+        <h4 style="padding: 0;margin-left: 15px; font-family: 'Playfair Display', serif;">Featured Trips</h4>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     {% for related in related_footer %}
@@ -285,7 +285,7 @@
             {% if related.feature_image == none %}
                 <div class="hovereffect">
                     <a href="{% url 'single' related.slug %}">
-                        <img class="img-responsive" src="/static/images/notfound.png" alt="">
+                        <img class="img-responsive myimg" src="/static/images/notfound.png" alt="">
                         <div class="overlay">
                             <h2>{{ related.title }}</h2>
                         </div>
@@ -294,7 +294,7 @@
             {% else %}
                 <div class="hovereffect">
                     <a href="{% url 'single' related.slug %}">
-                        <img class="img-responsive" src="/{{related.feature_image}}" alt="">
+                        <img class="img-responsive myimg" src="/{{related.feature_image}}" alt="">
                         <div class="overlay">
                             <h2>{{ related.title }}</h2>
                         </div>
