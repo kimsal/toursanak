@@ -148,13 +148,14 @@
                         {% for tab in tabs %}
                             <script type="text/javascript">
                                 html="";
+                                //alert("{{tab.id}}:{{tab.title}}:{{tab.ttitle}}")
                                 if(arr_check.indexOf("{{tab.id}}")>-1){
-                                    html='';
-                                    alert('d');
-                                    document.getElementById('').innerHTML+=html;
+                                    html='<tr><td>{{tab.ttitle}}</td><td>{{tab.description}}</td></tr>';
+                                    document.getElementById('tab_row_{{tab.id}}').innerHTML+=html;
                                 }
                                 else{
-                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table table-striped"><tbody><tr><td>John</td><td>john@example.com</td></tr></tbody></table></p></div>';
+                                   //alert("else");
+                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table table-striped"><tbody id="tab_row_{{tab.id}}"><tr><td>{{tab.ttitle}}</td><td>{{tab.description}}</td></tr></tbody></table></p></div>';
                                     document.getElementById('tab_content').innerHTML+=html;
                                 }
                                 arr_check.push("{{tab.id}}");
