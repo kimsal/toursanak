@@ -69,7 +69,7 @@
                                     Map
                                 </a>
                             </li>
-                         {% for tab in tabs %}
+                         {% for tab in tabhead %}
                             <li class="" onclick="show({{tab.id}})">
                                 <a href="#tab1default" data-toggle="tab">
                                     {{ tab.title }} 
@@ -87,6 +87,18 @@
                         help++;
                         var tabdetail="{{ tab.descript }}";
                         alert(tabdetail);
+                        // $.ajax({ 
+                        //     type: "GET",   
+                        //     url: "/gettabdetail/{{tab.id}}/", 
+                        //     success : function(response)
+                        //     {
+                        //         tabdetails=JSON.parse(response);
+                        //         $.each(tabdetails, function(index, tabdetail) {
+                        //            console.log(tabdetail.pk+":"+tabdetail.fields.title);
+                        //         });
+                               
+                        //     }
+                        // });
                         // var arr_detail_line=tabdetail.split(',;;;');
                         // var arr_detail=[];
                         // document.getElementById('tabdetail').innerHTML+='<div id="id{{ tab.id }}" class="tab" style="display:none"><table class="table" id="tabtable_{{tab.id}}"></table></div>';
