@@ -150,11 +150,12 @@
                                 html="";
                                 if(arr_check.indexOf("{{tab.id}}")>-1){
                                     html='';
-                                    document.getElementById('tab_content').innerHTML+=html;
+                                    alert('d');
+                                    document.getElementById('').innerHTML+=html;
                                 }
                                 else{
-                                    html='';
-                                    document.getElementById('').innerHTML+=html;
+                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table table-striped"><tbody><tr><td>John</td><td>john@example.com</td></tr></tbody></table></p></div>';
+                                    document.getElementById('tab_content').innerHTML+=html;
                                 }
                                 arr_check.push("{{tab.id}}");
                             </script>
