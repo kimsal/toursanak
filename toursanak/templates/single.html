@@ -64,11 +64,53 @@
             <div class="panel with-nav-tabs panel-default" style="border: none">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-                        <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
-                        <li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
+                        <li class="active" onclick="show(0)">
+                                <a href="#tab1default" data-toggle="tab">
+                                    Map
+                                </a>
+                            </li>
+                         {% for tab in tabhead %}
+                            <li class="" onclick="show({{tab.id}})">
+                                <a href="#tab1default" data-toggle="tab">
+                                    {{ tab.title }} 
+                                </a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
+                <div id="tabdetail"  class="panel-body">
+                      
+                </div>
+                <script>var help=0;</script>
+                {% for tab in tabs %}
+                       <script> //alert('d'); 
+                        help++;
+                        var tabdetail="{{ tab.descript }}";
+                        alert(tabdetail);
+                        // $.ajax({ 
+                        //     type: "GET",   
+                        //     url: "/gettabdetail/{{tab.id}}/", 
+                        //     success : function(response)
+                        //     {
+                        //         tabdetails=JSON.parse(response);
+                        //         $.each(tabdetails, function(index, tabdetail) {
+                        //            console.log(tabdetail.pk+":"+tabdetail.fields.title);
+                        //         });
+                               
+                        //     }
+                        // });
+                        // var arr_detail_line=tabdetail.split(',;;;');
+                        // var arr_detail=[];
+                        // document.getElementById('tabdetail').innerHTML+='<div id="id{{ tab.id }}" class="tab" style="display:none"><table class="table" id="tabtable_{{tab.id}}"></table></div>';
+                        // for(var i=0;i<arr_detail_line.length;i++){
+                        //     arr_detail=arr_detail_line[i].split('$$$');
+                        //         document.getElementById('tabtable_{{tab.id}}').innerHTML+='<tr><td style="width:25%;">'+arr_detail[0].replace(';;;','')+'</td><td class="desc">'+arr_detail[1]+'</td></tr>';
+                        //     //}   
+                        // }
+
+                </script>
+                    
+                {% endfor %}
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1default"><p class="descript">Default1</p></div>
@@ -123,7 +165,7 @@
         <!--booking-->
         {% for schedule in schedules %}
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a href="#" >
+            <a href="/{{tour_id}}/{{ schedule.id }}/booking/" >
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 package-box"style="width: 100%;">
                     <center>
                         <h4 style="color: #ffffff;font-weight: bold;">
