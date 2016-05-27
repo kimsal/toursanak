@@ -234,4 +234,6 @@
 .hovereffect p.info:hover {
     box-shadow: 0 0 5px #fff;
 }
-
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: rgba(128, 128, 128, 0);
+}
