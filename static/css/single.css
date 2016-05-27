@@ -1,3 +1,30 @@
+.borderless td, .borderless th {
+    border: none;
+    border-top:none;
+    padding: 0px;
+   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: justify;
+    margin: 0px 0px 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #222;
+    font-weight: 300;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05);
+    box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+.table > tbody > tr > td, .table > tfoot > tr > td {
+    /*padding: 8px;*/
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+    border-bottom: 0px solid #ddd;
+    
+}
 .banner1{
     background-color:#1F323F;
     min-height: 50px;
@@ -381,3 +408,44 @@ border: 1 solid thin gray;
     background-color: black;
 
 }
+/*scroll top*/
+
+.scroll-top-wrapper {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    text-align: center;
+    z-index: 99999999;
+    background-color: #777777;
+    color: #eeeeee;
+    width: 30px;
+    height: 35px;
+    line-height: 35px;
+    right: 30px;
+    bottom: 30px;
+    padding-top: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.scroll-top-wrapper:hover {
+    background-color: #888888;
+}
+.scroll-top-wrapper.show {
+    visibility:visible;
+    cursor:pointer;
+    opacity: 1.0;
+}
+.scroll-top-wrapper i.fa {
+    line-height: inherit;
+}
+
+
+/*end scroll top*/

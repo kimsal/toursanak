@@ -11,9 +11,9 @@
                 <div class="hovereffect">
                     <a href="{% url 'single' tour.slug %}">
                         {% if tour.feature_image == none %}
-                            <img class="img-responsive" src="/static/images/notfound.png" alt="">
+                            <img class="img-responsive myimg" src="/static/images/notfound.png" alt="">
                         {% else %}
-                            <img class="img-responsive" src="/{{tour.feature_image}}" alt="">
+                            <img class="img-responsive myimg" src="/{{tour.feature_image}}" alt="">
                         {% endif %}
                         <div class="overlay">
                             <h2>{{tour.title}}</h2>
@@ -58,5 +58,13 @@ function yHandler(){
 window.onscroll = yHandler;
 </script>
 <br/></br/>
+<!-- The scroll to top feature -->
+    
+<div class="scroll-top-wrapper ">
+  <span class="scroll-top-inner">
+    <i class="fa fa-2x fa-arrow-circle-up"></i>
+  </span>
+</div>
+<!--end scroll to top-->
 </body>
 </html>
