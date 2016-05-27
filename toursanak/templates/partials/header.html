@@ -17,26 +17,33 @@
     <!--index.css-->
     <link rel="stylesheet" type="text/css" href="/static/css/index.css">
     <script type="text/javascript" src="/static/js/script.js"></script>
+    <meta name="author" content="toursanak.com">
     {% if request.resolver_match.url_name == 'single' %}
         {% for tour in tours %}
             <title>{{tour.title}}|Toursanak</title>
             <link rel="stylesheet" href="/static/css/single.css">
             <script type="text/javascript" src="/static/js/script.js"></script>
+            <meta name="description" content="tour cambodia,Angkor wat,khmer visit, advanture,online tour,book tour,{{tour.short_description}}">
+            <meta name="keywords" content="tour,cambodia,khmer,angkor,best tour in the world,book tour,tour ticket,happy visiting,{{tour.keywords}}">
         {% endfor %}
     {% elif request.resolver_match.url_name == 'category'%}
         {% for cat in categories %}
             <title>{{cat.name}} | Toursanak</title>
-            <meta name="description" content="{{cat.name}}">
-            <meta name="keywords" content="{{cat.name}}">
-            <meta name="author" content="toursanak">
+            <meta name="description" content="tour cambodia, Angkor wat, khmer visit, advanture,{{cat.name}}">
+            <meta name="keywords" content="tour,cambodia,khmer,angkor,best tour in the world,happy visiting,{{cat.name}}">
         {% endfor %}
+    {% elif request.resolver_match.url_name == 'contact'%}
+        <title>Contact Tour</title>
+        <meta name="description" content="contact tour,visit tour,cambodia,Khmer,Angkor,online booking tour,fly tour">
+        <meta name="keywords" content="contact,toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,book tour,visiting,angkor wat,asean tour, best tour in the world">
+    {% elif request.resolver_match.url_name == 'booking'%}  
+         <title>Booking Tour</title>
+        <meta name="description" content="booking tour,visit tour,cambodia,Khmer,Angkor,online booking tour,fly tour,Welcome to visit Cambodia">
+        <meta name="keywords" content="contact,toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,book tour,Welcome to visit Cambodia,visiting,angkor wat,asean tour, best tour in the world,special tour in ASEAN">
     {%else%}
         <title>Toursanak</title>
-        <meta name="description" content="toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,">
-        <meta name="keywords" content="toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,">
-        <meta name="author" content="toursanak">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+        <meta name="description" content="">
+        <meta name="keywords" content="toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,book tour,visiting,angkor wat,asean tour, best tour in the world">
     {% endif %}
 </head>
 <body>

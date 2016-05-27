@@ -2,8 +2,6 @@ from django.db import models
 #to migrate with build in model:
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-
-
 class Category(models.Model):
 	id=models.AutoField(primary_key=True)
 	name=models.CharField(max_length=130)
@@ -50,6 +48,8 @@ class Tour(models.Model):
   		super(Tour, self).save()
   	def __str__(self):
   		return self.title
+  	def __unicode__(self):
+  		return u'Proposal for: %s' % self.title
 class Schedule(models.Model):
 	id=models.AutoField(primary_key=True)
 	tour=models.ForeignKey(Tour,on_delete=models.CASCADE)
@@ -60,6 +60,8 @@ class Image(models.Model):
 	id=models.AutoField(primary_key=True)
 	imagename=models.ImageField(upload_to = 'static/images/albums/')
 	tour=models.ForeignKey(Tour,on_delete=models.CASCADE)
+	def __unicode__(self):
+  		return u'Proposal for: %s' % self.imagename
 	#tour=models.ForeignKey(Tour,on_delete=models.CASCADE)
 	# def __str__(self):
  #  		return self.imagename
@@ -69,6 +71,8 @@ class Tab(models.Model):
 	tour=models.ForeignKey(Tour,on_delete=models.CASCADE)
 	def __str__(self):
   		return self.title
+  	def __unicode__(self):
+  		return u'Proposal for: %s' % self.title
 class TabDetail(models.Model):
 	id=models.AutoField(primary_key=True)
 	title=models.CharField(max_length=300)
@@ -76,11 +80,15 @@ class TabDetail(models.Model):
 	tab=models.ForeignKey(Tab,on_delete=models.CASCADE)
 	def __str__(self):
   		return self.title
+  	def __unicode__(self):
+  		return u'Proposal for: %s' % self.title
 class Contact(models.Model):
 	id=models.AutoField(primary_key=True)
 	name=models.CharField(max_length=50)
 	email=models.CharField(max_length=50)
 	description=models.TextField(null=True,blank=True)
+	def __unicode__(self):
+  		return u'Proposal for: %s' % self.name
 class Booking(models.Model):
 	id=models.AutoField(primary_key=True)
 	name=models.CharField(max_length=30)
@@ -91,3 +99,5 @@ class Booking(models.Model):
 	registered_at=models.DateTimeField(db_index=True,auto_now_add=True)
 	def __str__(self):
   		return self.name
+  	def __unicode__(self):
+  		return u'Proposal for: %s' % self.name
