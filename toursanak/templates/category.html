@@ -29,6 +29,7 @@
 var scrollid=15;
 var tour;
 var html='';
+var slug="{{slug}}";
 function yHandler(){
     var wrap = document.getElementById('wrap');
     var contentHeight = wrap.offsetHeight;
@@ -37,10 +38,10 @@ function yHandler(){
     if ((window.innerHeight + window.scrollY)+300 >= document.body.scrollHeight) {
         $.ajax({
           type: "GET",
-          url: "/scrollCategory/"+slug+"/"+scrollid,
+          url: "/scrollCategory/"+slug+"/"+scrollid+"/",
             success: function(response) {
                 tours=JSON.parse(response);
-                //console.log("result "+scrollid+"= "+response);
+                console.log("result "+scrollid+"= "+response);
                 for(var i=0;i<tours.length;i++) {
                     if(tours[i].fields.feature_image=='')
                         html="<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12' style='margin-top: 25px;'><div class='hovereffect'><a href='/"+tours[i].fields.slug+"'><img class='img-responsive' src='/static/images/notfound.png' alt=''><div class='overlay'><h2>"+tours[i].fields.title+"</h2></div></a></div></div>";
@@ -51,7 +52,7 @@ function yHandler(){
                 }
             }
         });
-        scrollid=scrollid+3;
+        scrollid=scrollid+6;
     }
 }
 window.onscroll = yHandler;
