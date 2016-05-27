@@ -15,9 +15,9 @@
                     <div class="hovereffect">
                         <a href="{% url 'single' tour.slug %}">
                         {% if tour.feature_image == none %}
-                          <img class="img-responsive " src="/static/images/notfound.png" alt="">
+                          <img class="img-responsive myimg " src="/static/images/notfound.png" alt="">
                         {% else %}
-                             <img class="img-responsive " src="/{{tour.feature_image}}" alt="">
+                             <img class="img-responsive  myimg" src="/{{tour.feature_image}}" alt="">
                          {%endif%}   
                         <div class="overlay">
                             <h2>{{tour.title}}</h2>

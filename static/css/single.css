@@ -48,7 +48,13 @@
     background-color:white;
     border-color:none;
 }
+/*slide fade in out */
 
+.carousel .item {-webkit-transition: opacity 8s; -moz-transition: opacity 3s; -ms-transition: opacity 3s; -o-transition: opacity 3s; transition: opacity 3s;}
+.carousel .active.left {left:0;opacity:0;z-index:2;}
+.carousel .next {left:0;opacity:1;z-index:1;}
+
+/*end fade slide in slide */
 .carousel-control .glyphicon-chevron-left,
 .carousel-control .glyphicon-chevron-right,
 .carousel-control .icon-prev,
@@ -173,12 +179,18 @@
 /*similar tour*/
 
 /*thumbnail*/
+.mythumnail1{
+    border: 10 solid gray thin;
+
+}
+
 .col-big{
     position: relative;
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
     width:20%;
+    border: none;
 }
 
 .hovereffect {
@@ -199,7 +211,19 @@
     overflow: hidden;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.32);
+    /*background-color: rgba(0, 0, 0, 0.32);*/
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+.hovereffect .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    /*background-color: rgba(0, 0, 0, 0.32);*/
+    background-color: rgba(0, 0, 0, 0);
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.7s ease-in-out;
 }
@@ -271,8 +295,17 @@ div.hovereffect.thumbnail {
     margin-bottom: 1px;
 
 }
+
+.thumbnail{
+   border:0;
+    box-shadow:0;
+    border-radius:0;
+    background-color: white;
+     background: transparent;
+}
 .myimg{
-    min-height: 150px;
+    min-height: 100%;
+    width: 100%;
 }
 .hovereffect p.info {
     display: inline-block;
@@ -327,10 +360,12 @@ border: 1 solid thin gray;
 .boxbanner{
     color: #ffffff;
     font-weight: bolder;
-    font-size: 24px;
+    font-size: 40px;
     /*margin-top: -145px;*/
     text-transform: uppercase;
     padding-top: 5%;
+        font-family: 'Playfair Display', serif;
+
 }
 .banner2{
     clear: both;
