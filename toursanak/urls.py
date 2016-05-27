@@ -21,20 +21,23 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
 admin.autodiscover()
+import toursanak.views
 urlpatterns = [
     # url(r'^search-form/$',"toursanak.views.search",name="search"),
-    url(r'^search/$', "toursanak.views.search", name="search"),
+    url(r'^search/$', toursanak.views.search, name="search"),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', "toursanak.views.index", name='index'),
-    url(r'^(\d+)/(\d+)/booking/', "toursanak.views.booking", name='booking'),
-    url(r'^contact/', "toursanak.views.contact", name='contact'),
-    url(r'^cat/(?P<slug>[-\w\d]+)/$', 'toursanak.views.category', name='category'),
-    url(r'^createContact/', "toursanak.views.createContact", name='createContact'),
-    url(r'^(\d+)/(\d+)/createbooking/', "toursanak.views.createBooking", name='createBooking'),
-    url(r'^(?P<slug>[-\w\d]+)/$', 'toursanak.views.single', name='single'),
-    url(r'^scroll/(\d+)/$', "toursanak.views.PostScroll", name='scroll'),
-    url(r'^scrollCategory/(\w+)/(\d+)/$', "toursanak.views.scrollCategory", name='scrollcategory'),
+    url(r'^$', toursanak.views.index, name='index'),
+    url(r'^(\d+)/(\d+)/booking/', toursanak.views.booking, name='booking'),
+    url(r'^contact/', toursanak.views.contact, name='contact'),
+    url(r'^cat/(?P<slug>[-\w\d]+)/$',toursanak.views.category, name='category'),
+    url(r'^createContact/', toursanak.views.createContact, name='createContact'),
+    url(r'^(\d+)/(\d+)/createbooking/', toursanak.views.createBooking, name='createBooking'),
+    url(r'^(?P<slug>[-\w\d]+)/$', toursanak.views.single, name='single'),
+    url(r'^scroll/(\d+)/$', toursanak.views.PostScroll, name='scroll'),
+    url(r'^scrollCategory/(\w+)/(\d+)/$', toursanak.views.scrollCategory, name='scrollcategory'),
 
+    #get data
+    url(r'^gettabdetail/(\d+)/$', toursanak.views.getTabDetail, name='gettd'),
 ]
 
 
