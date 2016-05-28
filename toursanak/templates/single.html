@@ -1,5 +1,12 @@
 {% include "partials/header.html" %}
 <!--start container-->
+<script type="text/javascript">
+    var html='';   
+    var title='',description=''; 
+    var arr_check=[];    
+    var help=0;        
+    var check=0;
+</script>
 <div class="banner1">
     <center style="color:white;line-height: 300%;">
         <label style="font-family: font-family: 'PT Serif',serif;">
@@ -62,47 +69,72 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="panel with-nav-tabs panel-default" style="border: none">
                 <div class="panel-heading">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab1default" data-toggle="tab">
-                        Map
-                        </a></li>
-                        {% for tab in tabhead %}
-                        <li><a href="#tab{{tab.id}}default" data-toggle="tab">{{tab.title}}</a></li>
-                        {% endfor %}
+                    <ul class="nav nav-tabs" id="head_tab">
+                       
+                        <!-- <li class="active" id="map_tab_title">
+                            <a href="#tabdefault" data-toggle="tab">
+                                 Map
+                            </a>
+                        </li> -->
                     </ul>
+                    {% for tab in tabhead %}
+                        <script type="text/javascript">
+                       // alert(help+":"+check)
+                            if(check==0)
+                                document.getElementById('head_tab').innerHTML+='<li class="active"><a href="#tab{{tab.id}}default" data-toggle="tab">{{tab.title|linebreaks}}</a></li>';
+                            else
+                                document.getElementById('head_tab').innerHTML+='<li><a href="#tab{{tab.id}}default" data-toggle="tab">{{tab.title|linebreaks}}</a></li>';
+                            check++;
+                        </script>
+                        
+                    {% endfor %}
                 </div>
-                <script type="text/javascript">
-                    var html='';   
-                    var title='',description=''; 
-                    var arr_check=[];            
-                </script>
+                
                 <div class="panel-body" style="padding:0px;">
                     <div class="tab-content" id="tab_content">
-                        <div class="tab-pane fade in active" id="tab1default">
-                        <br/>
-                            <p class="descript" id="map">
-                                {{tour.map}}
+                        <!-- <div class="tab-pane fade in active" id="tab1default">
+                            <br/>
+                          
+                            <p class="descript" id="setTabdefault">
+                                {{tour.map}} dfdf
                             </p>
-                            <script type="text/javascript">
-                                document.getElementById('map').innerHTML=document.getElementById('map').innerHTML.replace('&gt;','>').replace('&lt;','<').replace('width="600"','').replace('height="450"','').replace('style="border:0"','style="border:0;width:100%;"');
-                            </script>
-                        </div>
+                           
+                        </div> -->
+                        
+                    </div>
+                     <script type="text/javascript">
+                        check=0;
+                    </script>
                         {% for tab in tabs %}
                             <script type="text/javascript">
                                 html="";
-                                title="{{tab.ttitle}}";
-                                description="{{tab.description}}";
+                                //alert(check);
+                                check++;
+                                title="{{tab.ttitle|linebreaks}}";
+                                description="{{tab.description|linebreaks}}";
+                                //alert("{{tab.id}}:"+help);
                                 if(arr_check.indexOf("{{tab.id}}")>-1){
+                                    //alert("id:{{tab.id}} if"+check);
                                     html='<tr><td>'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr>';
                                     document.getElementById('tab_row_{{tab.id}}').innerHTML+=html;
                                 }
                                 else{
-                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td>'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></p></div>';
+                                    if(check==1){
+                                        //alert("id:{{tab.id}} else if"+check);
+                                        html='<div class="tab-pane fade in active" id="tab{{tab.id}}default"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td>'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></div>';
+                                    }
+                                    else{
+                                        ///alert("id:{{tab.id}} else else"+check);
+                                        html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td>'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></p></div>';
+                                    }
                                     document.getElementById('tab_content').innerHTML+=html;
                                 }
+                                check++;
                                 arr_check.push("{{tab.id}}");
+                                
+                                //alert("{{tab.id}}");
                             </script>
-                            <div class="tab-pane fade" id="tab2default">
+                           <!--  <div class="tab-pane fade" id="tab2default">
                                 <p class="descript">
                                    <table class="table borderless">
                                         <tbody>
@@ -113,9 +145,8 @@
                                         </tbody>
                                     </table>
                                 </p>
-                            </div>
+                            </div> -->
                         {% endfor %} 
-                    </div>
                 </div>
             </div>
         </div>
