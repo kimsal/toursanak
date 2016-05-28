@@ -72,7 +72,8 @@
                     </ul>
                 </div>
                 <script type="text/javascript">
-                    var html='';    
+                    var html='';   
+                    var title='',description=''; 
                     var arr_check=[];            
                 </script>
                 <div class="panel-body" style="padding:0px;">
@@ -89,14 +90,14 @@
                         {% for tab in tabs %}
                             <script type="text/javascript">
                                 html="";
-                                //alert("{{tab.id}}:{{tab.title}}:{{tab.ttitle}}")
+                                title="{{tab.ttitle}}";
+                                description="{{tab.description}}";
                                 if(arr_check.indexOf("{{tab.id}}")>-1){
-                                    html='<tr><td>{{tab.ttitle}}</td><td>{{tab.description}}</td></tr>';
+                                    html='<tr><td>'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr>';
                                     document.getElementById('tab_row_{{tab.id}}').innerHTML+=html;
                                 }
                                 else{
-                                   //alert("else");
-                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td>{{tab.ttitle}}</td><td>{{tab.description}}</td></tr></tbody></table></p></div>';
+                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td>'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></p></div>';
                                     document.getElementById('tab_content').innerHTML+=html;
                                 }
                                 arr_check.push("{{tab.id}}");
