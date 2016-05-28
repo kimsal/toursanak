@@ -59,9 +59,9 @@ def createContact(request):
 				description=form.cleaned_data['contactDescription']
 				r=Contact(name=name,email=email,description=description)
 				r.save()
-				body="Please keep in touch with the customer. Customer request is:\n {} \nFrom: {}".format(description,email)
+				body="Please keep in touch with the customer. Customer request is:\n{}\n----------------------\nFrom: {}".format(description,email)
 				#return HttpResponse(r)
-				e = EmailMessage('New Contact request From {}. '.format(name), body, to=['kimsalsan007@gmail.com'])
+				e = EmailMessage('New Contact request From {}. '.format(name), body, to=['toursanak@gmail.com'])
 				e.send()
 				messages.add_message(request, messages.SUCCESS, "Your request sent succesfully. We'll contact you soon!")
 				return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
@@ -109,7 +109,7 @@ def createBooking(request,tour_id,schedule_id):
 					tour_enddate=t.end_date
 					tour_price=t.price
 				body="{}\n\nMore info:\nTour: {}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {} ".format(description,tour_title,tour_startdate,tour_enddate,tour_price,tour_url,email)
-				e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
+				e = EmailMessage('New booking request From {}'.format(name), body, to=['toursanak@gmail.com'])
 				e.send()
 				messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
 				return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
