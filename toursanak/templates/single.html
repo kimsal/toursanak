@@ -75,12 +75,16 @@
                     var html='';    
                     var arr_check=[];            
                 </script>
-                <div class="panel-body">
+                <div class="panel-body" style="padding:0px;">
                     <div class="tab-content" id="tab_content">
                         <div class="tab-pane fade in active" id="tab1default">
-                            <p class="descript">
+                        <br/>
+                            <p class="descript" id="map">
                                 {{tour.map}}
                             </p>
+                            <script type="text/javascript">
+                                document.getElementById('map').innerHTML=document.getElementById('map').innerHTML.replace('&gt;','>').replace('&lt;','<').replace('width="600"','').replace('height="450"','').replace('style="border:0"','style="border:0;width:100%;"');
+                            </script>
                         </div>
                         {% for tab in tabs %}
                             <script type="text/javascript">
