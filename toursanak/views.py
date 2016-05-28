@@ -123,7 +123,8 @@ def createBooking(request,tour_id,schedule_id):
     messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
     return redirect('/{}/{}/booking'.format(tour_id,schedule_id),{})
 def search(request):
-  search_data=Tour.objects.raw("SELECT * FROM toursanak_tour where  to_tsvector('simple', concat_ws(' ', title,short_description)) @@ to_tsquery('{}') ORDER BY id DESC limit 15".format(request.GET['q'].replace(' ','&')))
+  #search_data=Tour.objects.raw("SELECT * FROM toursanak_tour where  to_tsvector('simple', concat_ws(' ', title)) @@ to_tsquery('{}') ORDER BY id DESC limit 15".format(request.GET['q']))
+  search_data=Tour.objects.raw("select * from toursanak_tour where  title like 'title'")
   return render(request,'search.html',{'tours':search_data})
 def getTabDetail(request,tab_id):
   #return HttpResponse(tab_id)
