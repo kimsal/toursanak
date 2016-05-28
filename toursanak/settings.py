@@ -49,7 +49,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'toursanak.wsgi.application'
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -60,7 +59,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 
 
@@ -97,6 +95,19 @@ STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),"static")
 #         'NAME': 'toursanak',
 #         'USER': 'postgres',
 #         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+#server
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'toursanak',
+#         'USER': 'django',
+#         'PASSWORD': 'fMQNlgJBNx',
 #         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
