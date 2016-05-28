@@ -384,7 +384,7 @@ border: 1 solid thin gray;
 .boxbanner{
     color: #ffffff;
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 30px;
     /*margin-top: -145px;*/
     text-transform: uppercase;
     padding-top: 5%;
@@ -446,3 +446,7 @@ border: 1 solid thin gray;
 
 
 /*end scroll top*/
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
