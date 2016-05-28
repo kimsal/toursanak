@@ -1,5 +1,12 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'kimsalsan12@gmail.com'
+EMAIL_HOST_PASSWORD = '11101999sal'
+EMAIL_PORT = 587
+
 SECRET_KEY = '_a8a)rq6r&9+yng1f^8fak#@go9&)oh+0c(yi6%+b_yab%jim6'
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -35,15 +42,18 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'toursanak.views.getCategory',
-                'django.core.context_processors.request',
             ],
         },
     },
 ]
 WSGI_APPLICATION = 'toursanak.wsgi.application'
+
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'toursanak',
         'USER': 'django',
         'PASSWORD': 'fMQNlgJBNx',
@@ -51,6 +61,19 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+
+#kimsal
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'toursanak',
+#         'USER': 'toursanak',
+#         'PASSWORD': 'toursanak',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 AUTH_PASSWORD_VALIDATORS = [
   #  { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
   #  { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
@@ -67,3 +90,13 @@ STATICFILES_DIRS=[  os.path.join(BASE_DIR,"static") ]
 STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),"static")
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'toursanak',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }

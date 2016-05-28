@@ -1,19 +1,15 @@
 {% include "partials/header.html" %}
-
-<div class="banner1 ">
-    <center style="color: white;padding-right:2%;">
-        <label class="myadd1">
-            <a href="#" style="color:white;">
-            We want you to spend less on office rent and to stop.
-            </a>
+<!--start container-->
+<div class="banner1">
+    <center style="color:white;line-height: 300%;">
+        <label style="font-family: font-family: 'PT Serif',serif;">
+            Learn and experience mangrove reforestation
         </label>
-    <a style="color: white;padding-left:17%;padding-top:-5%;"  href="/contact">
-        <button  class="btn btn-default"  style="background-color: rgba(0, 0, 0, 0.05);color: #ffffff;"
-                class="btn btn-info btn-lg">
-            <i class="fa fa-1x fa-envelope" aria-hidden="true"></i>
-            Contact
-        </button>
-    </a>
+        <a href="/contact">
+            <button style="background: none;color: white;" class="btn btn-default"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                Contact
+            </button>
+        </a>
     </center>
 </div>
 <!--scroll menu top fix-->
@@ -21,278 +17,249 @@
     $(window).scroll(function(){
         var banner1 = $('.banner1'),
                 scroll = $(window).scrollTop();
-        if (scroll >= 55) banner1.addClass('myfix');
+        if (scroll >=40) banner1.addClass('myfix');
         else banner1.removeClass('myfix');
     });
 </script>
 <!--end scroll menu top-->
-
 {% for tour in tours %}
-   
     {% if tour.banner == '' %}  
-        <div class="myhead1" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/static/images/banner_none.jpg");'>
-            <div class="container">
+        <div class="banner2" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/static/images/banner_none.jpg");'>
                 <center>
-                    <label class="boxbanner" style=";font-size: 25px;margin-bottom: 33px;">
-                    {{ tour.title }}
+                    <label class="boxbanner" >
+                        {{ tour.title }}
                     </label>
                     <br/>
-                    <label class="boxbanner1">
+                    <label style="color: #ffffff;font-size:30px;font-family: 'PT Serif',serif;">
+                         {{tour.short_description}}
+                    </label>
+                </center>
+        </div>
+    {% else %}
+        <div class="banner2" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/{{tour.banner}}");'>
+                <center>
+                    <label class="boxbanner" >
+                        {{ tour.title }}
+                    </label>
+                    <br/>
+                    <label style="color: #ffffff;font-size:30px;    font-family: 'Playfair Display', serif;">
                         {{tour.short_description}}
                     </label>
                 </center>
-            </div>
-        </div>         
-    {% else %}   
-            <div class="myhead1" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/{{tour.banner}}");'>
-                <div class="container">
-                    <center>
-                        <label class="boxbanner" style=";font-size: 25px;margin-bottom: 33px;">
-                        {{ tour.title }}
-                        </label>
+        </div>
+
+    {% endif %}
+
+<br>
+<div class="container">
+    <!--desciption-->
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <p class="descript">
+                {{ tour.description }}
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="panel with-nav-tabs panel-default" style="border: none">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1default" data-toggle="tab">
+                        Map
+                        </a></li>
+                        {% for tab in tabhead %}
+                        <li><a href="#tab{{tab.id}}default" data-toggle="tab">{{tab.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    var html='';    
+                    var arr_check=[];            
+                </script>
+                <div class="panel-body" style="padding:0px;">
+                    <div class="tab-content" id="tab_content">
+                        <div class="tab-pane fade in active" id="tab1default">
                         <br/>
-                        <label class="boxbanner1">
-                            {{tour.short_description}}
-                        </label>
+                            <p class="descript" id="map">
+                                {{tour.map}}
+                            </p>
+                            <script type="text/javascript">
+                                document.getElementById('map').innerHTML=document.getElementById('map').innerHTML.replace('&gt;','>').replace('&lt;','<').replace('width="600"','').replace('height="450"','').replace('style="border:0"','style="border:0;width:100%;"');
+                            </script>
+                        </div>
+                        {% for tab in tabs %}
+                            <script type="text/javascript">
+                                html="";
+                                //alert("{{tab.id}}:{{tab.title}}:{{tab.ttitle}}")
+                                if(arr_check.indexOf("{{tab.id}}")>-1){
+                                    html='<tr><td>{{tab.ttitle}}</td><td>{{tab.description}}</td></tr>';
+                                    document.getElementById('tab_row_{{tab.id}}').innerHTML+=html;
+                                }
+                                else{
+                                   //alert("else");
+                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td>{{tab.ttitle}}</td><td>{{tab.description}}</td></tr></tbody></table></p></div>';
+                                    document.getElementById('tab_content').innerHTML+=html;
+                                }
+                                arr_check.push("{{tab.id}}");
+                            </script>
+                            <div class="tab-pane fade" id="tab2default">
+                                <p class="descript">
+                                   <table class="table borderless">
+                                        <tbody>
+                                          <tr>
+                                            <td>John</td>
+                                            <td>john@example.com</td>
+                                          </tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </div>
+                        {% endfor %} 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--tab-->
+        <!--tab-->
+    </div>
+    <!--end description-->
+
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!--slide-->
+            <!-- Carousel -->
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
+                <!-- Indicators -->
+                <ol class="carousel-indicators" id="point_slide">
+                   <!--  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" style="border-radius: 3px;" id="slide_image">
+                    
+                        <!--slide is here-->
+                </div>
+                <script type="text/javascript">
+                        var images="{{tour.imagename}}".split(',');
+                        for(var i=0;i<images.length;i++){
+                            //alert(images[i]);
+                            if(i==0)
+                                document.getElementById('slide_image').innerHTML+='<div class="item active"><img src="/'+images[i]+'" alt="NO" style="height:220px;"><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
+                            else
+                                document.getElementById('slide_image').innerHTML+='<div class="item"><img src="/'+images[i]+'" alt="NO" style="height:220px;"><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
+                            document.getElementById('point_slide').innerHTML+='<li data-target="#carousel-example-generic" data-slide-to="'+i+'" class="active"></li>';
+                        }
+                    </script>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"  style="font-size: 13px;"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" style="font-size: 13px;"></span>
+                </a>
+            </div><!-- /carousel -->
+            <!--end slide-->
+        </div>
+        <!--booking-->
+        {% for schedule in schedules %}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <a href="/{{tour_id}}/{{ schedule.id }}/booking/" >
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 package-box"style="width: 100%;">
+                    <center>
+                        <h4 style="color: #ffffff;font-weight: bold;">
+                            From:{{schedule.start_date}}
+                            
+                            To:{{schedule.end_date}}
+                        </h4>
+                    </center>
+                    <center>
+                    <p style="color: #ffffff;font-weight: bold;">
+                        <b>
+                            ${{ schedule.price }}
+                        </b>
+                              <span> /
+                                 person<i style="font-size:20px;text-indent: 15px;" class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                              </span>
+                    </p>
                     </center>
                 </div>
-            </div>
-    {% endif %}   
-
-
-<!-- 
-
-
-    <div class="myhead1" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/{{tour.banner}}");'>
-        <div class="container">
-            <center>
-                <label class="boxbanner" style=";font-size: 25px;margin-bottom: 33px;">
-                {{ tour.title }}
-                </label>
-                <br/>
-                <label class="boxbanner1">
-                    {{tour.short_description}}
-                </label>
-            </center>
+            </a>
         </div>
-    </div> -->
+         {% endfor %}
 
-<div class="container">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="clear: both">
-            <br>
-                <div>
-                    <p class="description">
-                      {{ tour.description }}
-                     </p>
-                </div>
-                <br>
-                    <ul class="nav nav-tabs">
-                      
-                            <li class="active" role="presentation">
-                            <a href="#" onclick="show(0)" data-toggle="tab"><i class="" aria-hidden="true"></i>
-                            Map
-                        </a></li>
-                       
-                        {% for tab in tabs %}
-                            <li role="presentation">
-                            <a href="#" onclick="show({{tab.id}})" data-toggle="tab"><i class="" aria-hidden="true"></i>
-                               {{ tab.title }} 
-                            </a></li>
-                        {% endfor %}
-                        
-                    </ul>
-            <br>
-            <!--end nav menu-->
-
-            <!--show nav menu onclick-->
-            <div id="id0" class="tab" style="display: block">
-               
-                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 map">
-                   {{ tour.map }}
-                </div>
-               
-            </div>
-            <div id="tabdetail">
-                      
-            </div>
-                <script>var help=0;</script>
-                {% for tab in tabs %}
-                       <script> //alert('d'); 
-                        help++;
-                        var tabdetail="{{ tab.descript }}";
-                        //alert(tabdetail);
-                        var arr_detail_line=tabdetail.split(',;;;');
-                        var arr_detail=[];
-                        document.getElementById('tabdetail').innerHTML+='<div id="id{{ tab.id }}" class="tab" style="display:none"><table class="table" id="tabtable_{{tab.id}}"></table></div>';
-                        for(var i=0;i<arr_detail_line.length;i++){
-                            arr_detail=arr_detail_line[i].split('$$$');
-                                document.getElementById('tabtable_{{tab.id}}').innerHTML+='<tr><td style="width:25%;">'+arr_detail[0].replace(';;;','')+'</td><td class="desc">'+arr_detail[1]+'</td></tr>';
-                            //}   
-                        }
-
-                </script>
-                    
-                {% endfor %}
-
+        <!--end booking-->
+        <!--start similar tour-->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h4 style="font-family: 'Playfair Display', serif;">
+           <center style="font-web:bold;line-height: 50px;"> Similar Tour</center>
+        </h4>
         </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding: 0px;margin: 0px;">
-            <br>
-                 <!--slide-->
-                <!--<div class=" hidden-xs">-->
-                <div class="container-slides">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                        <div class="carousel-inner"  role="listbox" id="slide_image">
-                           <!--slide is here-->
-                        </div>
-                        <script type="text/javascript">
-                                var images="{{tour.imagename}}".split(',');
-                                for(var i=0;i<images.length;i++){
-                                    //alert(images[i]);
-                                    if(i==0)
-                                        document.getElementById("slide_image").innerHTML+='<div class="item active slide_img"><img class="img-responsive " style="width: 100%;height:100%;border-radius: 3px;padding-top: 0%;" src="/'+images[i]+'" alt="Chania"></div>';
-                                    else
-                                        document.getElementById("slide_image").innerHTML+='<div class="item slide_img"><img class="img-responsive " style="width: 100%;border-radius: 3px;height:100%;padding-top: 0%;" src="/'+images[i]+'" alt="Chania"></div>';
-                                }
-                        </script>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+               {% for related in related_posts %}
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " style="padding:0px;" >
+                    <div class="hovereffect thumbnail ">
+                        <a href="{% url 'single' related.slug %}">
+                        {% if related.feature_image == none %}
+                            <img class="myimg img-responsive mythumnail1" src="/static/images/notfound.png" alt="">
+                            <div class="overlay">
+                                <h2>{{ related.title }}</h2>
+                            </div>
+                        {% else %}
+                             <img class="myimg img-responsive" src="/{{related.feature_image}}" alt="">
+                                <div class="overlay">
+                                    <h2 style="font-size:12px;font-weight:bold;">{{ related.title }}</h2>
+                                </div>
+                       {%endif%} 
+                        </a>
+                    </div>
                 </div>
-
-
-
-                <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
                 {% endfor %}
-                <!--end slide-->
-               {% for schedule in schedules %}
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-booking">
-                    <a href="/{{tour_id}}/{{ schedule.id }}/booking/" >
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 package-box">
-                            <h2>
-                                From:{{schedule.start_date}}
-                                <br/>
-                                To:{{schedule.end_date}}
-                            </h2>
-                            <p>
-                                <b>
-                                    ${{ schedule.price }}
-                                </b>
-                                      <span> /
-                                          person
-                                      </span>
-                            </p>
+            </div>
+        <!--end similar tour-->
+    </div>
+    <!--feature image-->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h4 style="padding: 0;margin-left: 15px; font-family: 'Playfair Display', serif;">Featured Trips</h4>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    {% for related in related_footer %}
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 25px;">
+            {% if related.feature_image == none %}
+                <div class="hovereffect">
+                    <a href="{% url 'single' related.slug %}">
+                        <img class="img-responsive myimg" src="/static/images/notfound.png" alt="">
+                        <div class="overlay">
+                            <h2>{{ related.title }}</h2>
                         </div>
                     </a>
-
                 </div>
-                {% endfor %}
-            <!--small image show-->
-            <div class="clearfix"></div>
-            <center> <label style="font-weight: bold;text-decoration: underline;">SIMILAR TRIPS:</label></center>
-            {% for related in related_posts %}
-
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-box hidden-xs" style="padding: 0px;">
-                            <a href="{% url 'single' related.slug %}">
-                                <div class="text-xs-center">
-                                     {% if related.feature_image == none %}
-                                      <img src="/static/images/notfound.png" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
-                                    <div class="carousel-caption">
-                                        <a href="{% url 'single' related.slug %}" style="font-size: 14px; color: white;margin-top: 30px;">
-                                        {{ related.title }}
-                                        <!-- <span class="badge">${{related.price}}</span> --></a><br>
-                                    </div>
-
-                                    {% else %}
-                                        <img src="/{{related.feature_image}}" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
-                                        <div class="carousel-caption">
-                                            <a href="{% url 'single' related.slug %}" style="font-size: 11px; color: white;margin-top: 30px;">
-                                            {{ related.title }}
-                                            <!-- <span class="badge">${{related.price}}</span> --></a><br>
-                                        </div>
-
-                                     {%endif%}   
-
-                                </div>
-                            </a>
+            {% else %}
+                <div class="hovereffect">
+                    <a href="{% url 'single' related.slug %}">
+                        <img class="img-responsive myimg" src="/{{related.feature_image}}" alt="">
+                        <div class="overlay">
+                            <h2>{{ related.title }}</h2>
                         </div>
-                    <style type="text/css">
-                            .img-thumbnail{
-                                padding: 0px;         
-                            }
-                    </style>
-            {% endfor %}
+                    </a>
+                </div>
+
+            {% endif %}
         </div>
-
+    {% endfor %}
     </div>
+{% endfor %}
 </div>
-    <br>
-    <div class="myline" >
-        <label>Featured Trips</label>
-    </div>
-        {% for related in related_footer %}
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 " style="padding: 0px;margin-left: -6px;">
-                <a href="#">
-                {% if related.feature_image == none %}
-                     <div class="text-xs-center">
-                        <img src="/static/images/notfound.png" style="" class="img-responsive img-thumbnail1 " alt="Not found ">
-                        <div class="carousel-caption">
-                            <a href="{% url 'single' related.slug %}" style="font-size: 11px; color: white;margin-top: 30px;">
-                          <a href="#" style="font-size: 12px;color:#6c6060;margin-top: 30px;">
-                            {{ related.title }}
-                           <!--  <span class="badge">${{related.price}}</span> --></a><br>
-                        </div>
-                    </div>
-                {% else %}
-                <a href="{% url 'single' related.slug %}">
-                    <div class="text-xs-center">
-                        <img src="/{{related.feature_image}}" style="" class="img-responsive img-thumbnail1 " alt="Not found ">
-                        <div class="carousel-caption">
-                          <a href="{% url 'single' related.slug %}" style="font-size: 15px;color: white;margin-top: 30px;">
-                            {{ related.title }}
-                            <!-- <span class="badge">${{related.price}} --></span></a><br>
-                        </div>
-                    </div>
-                {% endif %}
-                </a>
-            </div>
-              
-        {% endfor %}
-<a href="#" class="scrollToTop">Top</a>
-    <div class="myfoot1" >
-    </div>
+<!-- The scroll to top feature -->
+    
+<div class="scroll-top-wrapper ">
+  <span class="scroll-top-inner">
+    <i class="fa fa-2x fa-arrow-circle-up"></i>
+  </span>
 </div>
-</div>
-<script type="text/javascript">
-/*script for scroll Top*/
-$(document).ready(function(){
-    
-    //Check to see if the window is top if not then display button
-    $(window).scroll(function(){
-        if ($(this).scrollTop() > 100) {
-            $('.scrollToTop').fadeIn();
-        } else {
-            $('.scrollToTop').fadeOut();
-        }
-    });
-    
-    //Click event to scroll to top
-    $('.scrollToTop').click(function(){
-        $('html, body').animate({scrollTop : 0},800);
-        return false;
-    });
-    
-});
-
-
-</script>
-
-
-<script src="/static/js/jquery-ui.js" type="text/javascript"></script>
-<script src="/static/js/custome.js" type="text/javascript"></script>
-<link href="/static/css/jquery-ui.css" rel="stylesheet">
-<link href="/static/css/style_single.css" rel="stylesheet">
-<link href="/static/css/singl1.css" rel="stylesheet">
-
+<!--end scroll to top-->
+<div style="height:50px;"></div>
 </body>
 </html>
+

@@ -36,6 +36,8 @@ urlpatterns = [
     url(r'^scroll/(\d+)/$', toursanak.views.PostScroll, name='scroll'),
     url(r'^scrollCategory/(\w+)/(\d+)/$', toursanak.views.scrollCategory, name='scrollcategory'),
 
+    #get data
+    url(r'^gettabdetail/(\d+)/$', toursanak.views.getTabDetail, name='gettd'),
 ]
 
 

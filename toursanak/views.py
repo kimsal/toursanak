@@ -6,6 +6,7 @@ from .forms import *
 from django.contrib import messages
 from itertools import chain
 import re
+from django.core.mail import EmailMessage
 from django.db.models import Q
 #db.execute('CREATE FULLTEXT INDEX toursanak_title ON toursanak_tour (title, body)')
 def index(request):
@@ -30,11 +31,15 @@ def single(request, slug):
     tabs=''
     #tabs=Tab.objects.raw("Select * from toursanak_tab where tour_id={}".format(tab))
     #tabs=Tab.objects.raw("select id,title,(select STRING_AGG((select toursanak_tabdetail.title from toursanak_tabdetail where tb_td.id=toursanak_tabdetail.id limit 1), ';') as tabdescription  from toursanak_tabdetail as tb_td INNER JOIN toursanak_tab ON toursanak_tab.id=tb_td.tab_id where toursanak_tab.id=t1.id) as descript from toursanak_tab as t1 where tour_id={}".format(tab))
-    tabs=Tab.objects.raw("Select tb1.id,tb1.title,(Select array_to_string(ARRAY[array_agg(tb2.title),array_agg(tb2.description)],'$$$' ) as  descript from toursanak_tabdetail as tb2 where tb1.id=tb2.tab_id ) from toursanak_tab as tb1 where tb1.tour_id={}".format(tab))
+    #tabs=Tab.objects.raw("Select tb1.id,tb1.title,(Select array_to_string(ARRAY[array_agg(tb2.title),array_agg(tb2.description)],'$$$' ) as  descript from toursanak_tabdetail as tb2 where tb1.id=tb2.tab_id ) from toursanak_tab as tb1 where tb1.tour_id={}".format(tab))
     #tabs=Tab.objects.raw("select id,title,(select GROUP_CONCAT(';;;',toursanak_tabdetail.title,'$$$',toursanak_tabdetail.description) as tabdescription  from toursanak_tabdetail INNER JOIN toursanak_tab ON toursanak_tab.id=toursanak_tabdetail.tab_id where toursanak_tab.id=t1.id) as descript from toursanak_tab as t1 where tour_id={}".format(tab))
+    tabs=Tab.objects.raw("Select toursanak_tab.id,toursanak_tab.title,toursanak_tabdetail.title as ttitle,toursanak_tabdetail.description from toursanak_tab inner join toursanak_tabdetail on toursanak_tab.id=toursanak_tabdetail.tab_id where toursanak_tab.tour_id={}".format(tab))
+    tabhead=Tab.objects.raw("Select * from toursanak_tab where toursanak_tab.tour_id={}".format(tab))
     schedules=Schedule.objects.raw("select * from toursanak_schedule where tour_id={}".format(tab))
     #return HttpResponse(tabs.query)
-    return render(request,'single.html',{'tours':tours,'schedules':schedules,'tabs':tabs,'related_posts':related_posts,'related_footer':related_footer,'tour_id':tab})
+    #data = serializers.serialize('json', tabs)
+    #return HttpResponse(tabs.query)
+    return render(request,'single.html',{'tabhead':tabhead,'tours':tours,'schedules':schedules,'tabs':tabs,'related_posts':related_posts,'related_footer':related_footer,'tour_id':tab})
   else:
     return render(request,'404.html')
 def category(request,slug):
@@ -54,6 +59,10 @@ def createContact(request):
         description=form.cleaned_data['contactDescription']
         r=Contact(name=name,email=email,description=description)
         r.save()
+        body="Please keep in touch with the customer. Customer request is:\n{}\n----------------------\nFrom: {}".format(description,email)
+        #return HttpResponse(r)
+        e = EmailMessage('New Contact request From {}. '.format(name), body, to=['toursanak@gmail.com'])
+        e.send()
         messages.add_message(request, messages.SUCCESS, "Your request sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
@@ -86,6 +95,22 @@ def createBooking(request,tour_id,schedule_id):
         description=form.cleaned_data['bookingDescription']
         r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
         r.save()
+
+        tour=Tour.objects.raw("select * from toursanak_tour inner join toursanak_schedule on toursanak_tour.id=toursanak_schedule.tour_id where toursanak_tour.id={} AND toursanak_schedule.id={}".format(tour_id,schedule_id))
+        tour_title=''
+        tour_url=''
+        tour_startdate=''
+        tour_enddate=''
+        tour_price=''
+        for t in tour:
+          tour_title=t.title
+          tour_url="http://{}/{}".format(request.META['HTTP_HOST'],t.slug)
+          tour_startdate=t.start_date
+          tour_enddate=t.end_date
+          tour_price=t.price
+        body="{}\n\nMore info:\nTour: {}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {} ".format(description,tour_title,tour_startdate,tour_enddate,tour_price,tour_url,email)
+        e = EmailMessage('New booking request From {}'.format(name), body, to=['toursanak@gmail.com'])
+        e.send()
         messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
@@ -97,37 +122,12 @@ def createBooking(request,tour_id,schedule_id):
   else:
     messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
     return redirect('/{}/{}/booking'.format(tour_id,schedule_id),{})
-def normalize_query(query_string,
-                    findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
-                    normspace=re.compile(r'\s{2,}').sub):
-    ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
-        and grouping quoted words together.
-        Example:
-        >>> normalize_query('  some random  words "with   quotes  " and   spaces')
-        ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
-    
-    '''
-    return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)] 
-def get_query(query_string, search_fields):
-    ''' Returns a query, that is a combination of Q objects. That combination
-        aims to search keywords within a model by testing the given search fields.
-    
-    '''
-    query = None # Query to search for every search term        
-    terms = normalize_query(query_string)
-    for term in terms:
-        or_query = None # Query to search for a given term in each field
-        for field_name in search_fields:
-            q = Q(**{"%s__icontains" % field_name: term})
-            if or_query is None:
-                or_query = q
-            else:
-                or_query = or_query | q
-        if query is None:
-            query = or_query
-        else:
-            query = query & or_query
-    return query
 def search(request):
   search_data=Tour.objects.raw("SELECT * FROM toursanak_tour where  to_tsvector('simple', concat_ws(' ', title,short_description)) @@ to_tsquery('{}') ORDER BY id DESC limit 15".format(request.GET['q'].replace(' ','&')))
   return render(request,'search.html',{'tours':search_data})
+def getTabDetail(request,tab_id):
+  #return HttpResponse(tab_id)
+  result=TabDetail.objects.raw("Select * from toursanak_tabdetail as t1 where t1.tab_id={} ORDER BY t1.id ".format(tab_id))
+  data = serializers.serialize('json', result)
+  return HttpResponse(data)
+
