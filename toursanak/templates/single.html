@@ -147,6 +147,12 @@
                                 </p>
                             </div> -->
                         {% endfor %} 
+                        <div id="tour_map" style="width:100%;">
+                            {{tour.map|linebreaks}}
+                        </div>
+                        <script type="text/javascript">
+                            document.getElementById('tour_map').innerHTML=(document.getElementById('tour_map').innerHTML).replace('&lt;','<').replace('&gt;','>').replace('width="600"','').replace('height="450"','').replace('style="border:0"','style="border:0;width:100%;min-height:250px"');
+                        </script>
                 </div>
             </div>
         </div>
