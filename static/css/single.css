@@ -1,14 +1,15 @@
 .borderless td, .borderless th {
     border: none;
     border-top:none;
-    padding: 0px;
+    /*padding: 0px;*/
    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     text-align: justify;
-    margin: 0px 0px 10px;
+    /*margin: 0px 0px 10px;*/
     font-size: 16px;
     line-height: 1.5;
     color: #222;
     font-weight: 300;
+    padding: 15px 5px;
 }
 .panel {
     margin-bottom: 20px;
