@@ -97,20 +97,21 @@ def createBooking(request,tour_id,schedule_id):
         r.save()
 
         tour=Tour.objects.raw("select * from toursanak_tour inner join toursanak_schedule on toursanak_tour.id=toursanak_schedule.tour_id where toursanak_tour.id={} AND toursanak_schedule.id={}".format(tour_id,schedule_id))
-        tour_title=''
+        
+        t_title=''
         tour_url=''
         tour_startdate=''
         tour_enddate=''
         tour_price=''
         for t in tour:
-          tour_title=t.title
+          t_title=t.title
           tour_url="http://{}/{}".format(request.META['HTTP_HOST'],t.slug)
           tour_startdate=t.start_date
           tour_enddate=t.end_date
           tour_price=t.price
-        body="{}\n\nMore info:\nTour: {}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {} ".format(description,tour_title,tour_startdate,tour_enddate,tour_price,tour_url,email)
-        e = EmailMessage('New booking request From {}'.format(name), body, to=['toursanak@gmail.com'])
-        e.send()
+          body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
+          e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
+          e.send()
         messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
