@@ -24,6 +24,10 @@ admin.autodiscover()
 import toursanak.views
 urlpatterns = [
     # url(r'^search-form/$',"toursanak.views.search",name="search"),
+    #admin
+    #url(r'^admin/login/$', toursanak.views.login,name="login"), 
+    url(r'^admin/', include(admin.site.urls)),
+    
     url(r'^search/$', toursanak.views.search, name="search"),
     url(r'^bookings/$', toursanak.views.bookings, name='bookings'),
     url(r'^bookings/scroll/(\d+)', toursanak.views.scrollBook, name='scrollbookings'),
@@ -39,10 +43,9 @@ urlpatterns = [
     
     #get data
     url(r'^gettabdetail/(\d+)/$', toursanak.views.getTabDetail, name='gettd'),
-    #admin
-    #url(r'^admin/login/$', toursanak.views.login,name="login"), 
-
-    url(r'^admin/', include(admin.site.urls)),
+    
+    
+    
 ]
 
 

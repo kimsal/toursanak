@@ -11,18 +11,19 @@
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
-									<tr data-status="pagado"data-toggle="modal" data-target="#myModal">
+								{% for b in books %}
+									<tr data-status="pagado"data-toggle="modal" data-target="#myModal_{{b.id}}">
 										
 										<td>
 											<div class="media">												
 												<div class="media-body">
 													<span class="media-meta pull-right">
-													<h5>Febrero 13, 2016</h5></span>
+													<h5>{{b.registered_at}}</h5></span>
 													<h5 class="title">
-														Kimsal San
+														{{b.name}}
 													</h5>
 													<p class="summary hidden-xs ">
-														kimsalsan@gmail.com
+														{{b.email}}
 													</p>
 
 												</div>
@@ -31,7 +32,8 @@
 										<td>
 										
 										</td>
-									</tr>									
+									</tr>
+								{% endfor %}									
 								</tbody>
 							</table>
 						</div>
@@ -43,7 +45,8 @@
 			</div>
 		</section>
 	<!-- Modal -->
-		<div id="myModal" class="modal fade" role="dialog">
+	{% for b in books %}
+		<div id="myModal_{{b.id}}" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
 
 		    <!-- Modal content-->
@@ -52,9 +55,9 @@
 		       <button type="button" class="close" data-dismiss="modal">&times;</button>
 		      </div>
 		      <div class="modal-body">
-		       	<p>Title:Koh Kong</p><br/>
-		       	<p>Choosen Booking:From 2/2/20010 To 3/3/2019</p><br/>
-		       	<p>Comment: What is your goal?</p><br/>
+		       	<p>Tour: {{b.title}}</p><br/>
+		       	<p>Choosen Booking: From {{b.start_date}} To {{b.end_date}}</p><br/>
+		       	<p>{{b.description}}</p><br/>
 		       	<p></p>
 		      </div>
 		      <div class="modal-footer">
@@ -63,6 +66,7 @@
 
 		  </div>
 		</div>
+	{%endfor%}
 	<!--end Modal-->
 		
 	</div>
