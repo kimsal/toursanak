@@ -1,10 +1,4 @@
-/*    --------------------------------------------------
-	:: General
-	-------------------------------------------------- */
-body {
-	font-family: 'Open Sans', sans-serif;
-	color: #353535;
-}
+
 .content h1 {
 	text-align: center;
 }
@@ -138,3 +132,4 @@ body {
 .table-filter .media .summary {
 	font-size: 14px;
 }
+/*modal*/
