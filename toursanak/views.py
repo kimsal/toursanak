@@ -109,9 +109,10 @@ def createBooking(request,tour_id,schedule_id):
           tour_startdate=t.start_date
           tour_enddate=t.end_date
           tour_price=t.price
-          body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
+          body="Hello"
+          #body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
           e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
-          e.send()
+          #e.send()
         messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
