@@ -59,10 +59,10 @@ def createContact(request):
         description=form.cleaned_data['contactDescription']
         r=Contact(name=name,email=email,description=description)
         r.save()
-        body="Please keep in touch with the customer. Customer request is:\n{}\n----------------------\nFrom: {}".format(description,email)
-        #return HttpResponse(r)
-        e = EmailMessage('New Contact request From {}. '.format(name), body, to=['toursanak@gmail.com'])
-        e.send()
+        # body="Please keep in touch with the customer. Customer request is:\n{}\n----------------------\nFrom: {}".format(description,email)
+        # #return HttpResponse(r)
+        # e = EmailMessage('New Contact request From {}. '.format(name), body, to=['toursanak@gmail.com'])
+        # e.send()
         messages.add_message(request, messages.SUCCESS, "Your request sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
@@ -93,28 +93,28 @@ def createBooking(request,tour_id,schedule_id):
         name=form.cleaned_data['bookingName']
         email=form.cleaned_data['bookingEmail']
         description=form.cleaned_data['bookingDescription']
-        #r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
-        #r.save()
+        r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
+        r.save()
 
-        tour=Tour.objects.raw("select * from toursanak_tour inner join toursanak_schedule on toursanak_tour.id=toursanak_schedule.tour_id where toursanak_tour.id={} AND toursanak_schedule.id={}".format(tour_id,schedule_id))
+        #tour=Tour.objects.raw("select * from toursanak_tour inner join toursanak_schedule on toursanak_tour.id=toursanak_schedule.tour_id where toursanak_tour.id={} AND toursanak_schedule.id={}".format(tour_id,schedule_id))
         
-        t_title=''
-        tour_url=''
-        tour_startdate=''
-        tour_enddate=''
-        tour_price=''
-        for t in tour:
-          t_title=t.title
-          tour_url="http://{}/{}".format(request.META['HTTP_HOST'],t.slug)
-          tour_startdate=t.start_date
-          tour_enddate=t.end_date
-          tour_price=t.price
-          body="Hello"
+        # t_title=''
+        # tour_url=''
+        # tour_startdate=''
+        # tour_enddate=''
+        # tour_price=''
+        # for t in tour:
+        #   t_title=t.title
+        #   tour_url="http://{}/{}".format(request.META['HTTP_HOST'],t.slug)
+        #   tour_startdate=t.start_date
+        #   tour_enddate=t.end_date
+        #   tour_price=t.price
+          #body="Hello"
           #body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
-          body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
+          #body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
           #body="hello"
-          e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
-          e.send()
+          #e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
+          #e.send()
         messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
