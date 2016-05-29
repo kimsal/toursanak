@@ -120,3 +120,4 @@ STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),"static")
 #         'PORT': '5432',
 #     }
 # }
+#https://www.google.com/settings/security/lesssecureapps
