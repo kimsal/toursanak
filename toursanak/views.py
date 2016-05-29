@@ -74,11 +74,11 @@ def createContact(request):
     messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
     return redirect('/contact',{})
 def PostScroll(request,id):
-  ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit 3 OFFSET {}".format(id))
+  ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit 6 OFFSET {}".format(id))
   data = serializers.serialize('json', ScrollTours)
   return HttpResponse(data)
 def scrollCategory(request,slug,id):
-  ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit 3 OFFSET {}".format(slug,id))
+  ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit 6 OFFSET {}".format(slug,id))
   data = serializers.serialize('json', ScrollTours)
   return HttpResponse(data)
 def booking(request,tour_id,schedule_id):
