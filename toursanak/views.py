@@ -139,10 +139,19 @@ def getTabDetail(request,tab_id):
 def bookings(request):
   if request.user.is_authenticated():
     #return HttpResponse("login")
-    return render(request,'bookings.html',{})
-    render(request,'bookings.html',{})
+    books=Booking.objects.raw("select * from toursanak_booking limit 30")
+    #return HttpResponse(books)
+    return render(request,'bookings.html',{'books':books})
   else:
     #return HttpResponse("Not login")
     return redirect('/',{})
+def scrollBook(request,scroll_id):
+  books=Booking.objects.raw("select * from toursanak_booking limit 15 OFFSET {}".format(scroll_id))
+  data = serializers.serialize('json', books)
+  return HttpResponse(data)
 
 
+
+#admin
+def login(request):
+  return render(request,"admin/login.html")

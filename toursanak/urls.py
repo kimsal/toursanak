@@ -25,8 +25,8 @@ import toursanak.views
 urlpatterns = [
     # url(r'^search-form/$',"toursanak.views.search",name="search"),
     url(r'^search/$', toursanak.views.search, name="search"),
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^bookings/$', toursanak.views.bookings, name='bookings'),
+    url(r'^bookings/scroll/(\d+)', toursanak.views.scrollBook, name='scrollbookings'),
     url(r'^$', toursanak.views.index, name='index'),
     url(r'^(\d+)/(\d+)/booking/', toursanak.views.booking, name='booking'),
     url(r'^contact/', toursanak.views.contact, name='contact'),
@@ -39,7 +39,10 @@ urlpatterns = [
     
     #get data
     url(r'^gettabdetail/(\d+)/$', toursanak.views.getTabDetail, name='gettd'),
+    #admin
+    #url(r'^admin/login/$', toursanak.views.login,name="login"), 
 
+    url(r'^admin/', include(admin.site.urls)),
 ]
 
 
