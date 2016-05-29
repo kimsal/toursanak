@@ -26,7 +26,7 @@ def single(request, slug):
     tab=tour.id
     related=tour.category_id
   related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
-  related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 4");
+  related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 6");
   if tab!=0:
     tabs=''
     #tabs=Tab.objects.raw("Select * from toursanak_tab where tour_id={}".format(tab))
@@ -136,5 +136,12 @@ def getTabDetail(request,tab_id):
   result=TabDetail.objects.raw("Select * from toursanak_tabdetail as t1 where t1.tab_id={} ORDER BY t1.id ".format(tab_id))
   data = serializers.serialize('json', result)
   return HttpResponse(data)
+def bookings(request):
+  if request.user.is_authenticated():
+    #return HttpResponse("login")
+    render(request,'bookings.html',{})
+  else:
+    #return HttpResponse("Not login")
+    return redirect('/',{})
 
 
