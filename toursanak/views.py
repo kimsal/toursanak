@@ -26,7 +26,7 @@ def single(request, slug):
     tab=tour.id
     related=tour.category_id
   related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
-  related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 4");
+  related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 6");
   if tab!=0:
     tabs=''
     #tabs=Tab.objects.raw("Select * from toursanak_tab where tour_id={}".format(tab))
@@ -74,11 +74,11 @@ def createContact(request):
     messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
     return redirect('/contact',{})
 def PostScroll(request,id):
-  ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit 3 OFFSET {}".format(id))
+  ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit 6 OFFSET {}".format(id))
   data = serializers.serialize('json', ScrollTours)
   return HttpResponse(data)
 def scrollCategory(request,slug,id):
-  ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit 3 OFFSET {}".format(slug,id))
+  ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit 6 OFFSET {}".format(slug,id))
   data = serializers.serialize('json', ScrollTours)
   return HttpResponse(data)
 def booking(request,tour_id,schedule_id):
@@ -93,27 +93,32 @@ def createBooking(request,tour_id,schedule_id):
         name=form.cleaned_data['bookingName']
         email=form.cleaned_data['bookingEmail']
         description=form.cleaned_data['bookingDescription']
-        r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
-        r.save()
+        #r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
+        #r.save()
 
         tour=Tour.objects.raw("select * from toursanak_tour inner join toursanak_schedule on toursanak_tour.id=toursanak_schedule.tour_id where toursanak_tour.id={} AND toursanak_schedule.id={}".format(tour_id,schedule_id))
-        tour_title=''
+        
+        t_title=''
         tour_url=''
         tour_startdate=''
         tour_enddate=''
         tour_price=''
         for t in tour:
-          tour_title=t.title
+          t_title=t.title
           tour_url="http://{}/{}".format(request.META['HTTP_HOST'],t.slug)
           tour_startdate=t.start_date
           tour_enddate=t.end_date
           tour_price=t.price
-        body="{}\n\nMore info:\nTour: {}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {} ".format(description,tour_title,tour_startdate,tour_enddate,tour_price,tour_url,email)
-        e = EmailMessage('New booking request From {}'.format(name), body, to=['toursanak@gmail.com'])
-        e.send()
+          body="Hello"
+          #body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
+          body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
+          #body="hello"
+          e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
+          e.send()
         messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
+        raise
         messages.add_message(request, messages.ERROR, 'Sorry, Internal error!')
         return redirect('/{}/{}/booking'.format(tour_id,schedule_id),{'name':name,'email':email,'description':description})
     else:
@@ -131,4 +136,12 @@ def getTabDetail(request,tab_id):
   result=TabDetail.objects.raw("Select * from toursanak_tabdetail as t1 where t1.tab_id={} ORDER BY t1.id ".format(tab_id))
   data = serializers.serialize('json', result)
   return HttpResponse(data)
+def bookings(request):
+  if request.user.is_authenticated():
+    #return HttpResponse("login")
+    return render(request,'bookings.html',{})
+  else:
+    #return HttpResponse("Not login")
+    return redirect('/',{})
+
 
