@@ -48,13 +48,12 @@ TEMPLATES = [
 ]
 WSGI_APPLICATION = 'toursanak.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'toursanak',
-        'USER': 'toursanak',
-        'PASSWORD': 'toursanak',
+        'USER': 'django',
+        'PASSWORD': 'fMQNlgJBNx',
         'HOST': 'localhost',
         'PORT': '5432',
     }
