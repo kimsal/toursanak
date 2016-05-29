@@ -63,11 +63,13 @@ def createContact(request):
         # #return HttpResponse(r)
         # e = EmailMessage('New Contact request From {}. '.format(name), body, to=['toursanak@gmail.com'])
         # e.send()
-        messages.add_message(request, messages.SUCCESS, "Your request sent succesfully. We'll contact you soon!")
+        messages.add_message(request, messages.SUCCESS, "Your contact request sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
+        raise
         return redirect('/contact',{'name':name,'email':email,'description':description})
     else:
+      raise
       messages.add_message(request, messages.ERROR, "Your information is not valid!")
       return redirect('/contact',{})
   else:
@@ -150,7 +152,15 @@ def scrollBook(request,scroll_id):
   data = serializers.serialize('json', books)
   return HttpResponse(data)
 
-
+def contacts(request):
+  if request.user.is_authenticated():
+    #return HttpResponse("login")
+    contacts=Booking.objects.raw("select * from toursanak_contact ORDER BY id DESC")
+    #return HttpResponse(books)
+    return render(request,'contacts.html',{'contacts':contacts})
+  else:
+    #return HttpResponse("Not login")
+    return redirect('/',{})
 
 #admin
 def login(request):
