@@ -139,7 +139,7 @@ def getTabDetail(request,tab_id):
 def bookings(request):
   if request.user.is_authenticated():
     #return HttpResponse("login")
-    books=Booking.objects.raw("select * from toursanak_booking limit 30")
+    books=Booking.objects.raw("select toursanak_booking.id,toursanak_booking.name,toursanak_booking.description,toursanak_booking.registered_at,toursanak_tour.title,toursanak_schedule.start_date,toursanak_schedule.end_date,toursanak_schedule.price from toursanak_booking inner join toursanak_tour on toursanak_booking.tour_id=toursanak_tour.id inner join toursanak_schedule on toursanak_schedule.tour_id=toursanak_tour.id ORDER BY id DESC limit 30")
     #return HttpResponse(books)
     return render(request,'bookings.html',{'books':books})
   else:
@@ -154,4 +154,7 @@ def scrollBook(request,scroll_id):
 
 #admin
 def login(request):
-  return render(request,"admin/login.html")
+  frm =LoginForm(request.POST or None)
+  return render(request,"admin_dir/login.html",{'form':frm})
+def home(request):
+    return render(request,"admin_dir/home.html")
