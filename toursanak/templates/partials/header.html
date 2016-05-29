@@ -40,6 +40,10 @@
          <title>Booking Tour</title>
         <meta name="description" content="booking tour,visit tour,cambodia,Khmer,Angkor,online booking tour,fly tour,Welcome to visit Cambodia">
         <meta name="keywords" content="contact,toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,book tour,Welcome to visit Cambodia,visiting,angkor wat,asean tour, best tour in the world,special tour in ASEAN">
+    {% elif request.resolver_match.url_name == 'bookings'%}  
+         <title>Booking List</title>
+        <meta name="description" content="booking tour,visit tour,cambodia,Khmer,Angkor,online booking tour,fly tour,Welcome to visit Cambodia">
+        <meta name="keywords" content="contact,toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,book tour,Welcome to visit Cambodia,visiting,angkor wat,asean tour, best tour in the world,special tour in ASEAN">
     {%else%}
         <title>Toursanak</title>
         <meta name="description" content="">
@@ -68,6 +72,9 @@
              {% for category in categories %}
                 <li><a href="/cat/{{category.slug}}" style="font-weight: 500;color:black;">{{category.name}}</a></li>
             {% endfor %}
+            {% if user.is_authenticated %}
+                <li><a href="/bookings" style="font-weight: 500;color:black;">Booking List</a></li>
+            {%endif%}
             </ul>
             <ul class="nav navbar-nav navbar-right" style="border:none;">
                 <form class="navbar-form" role="search" name="s" action="/search/">

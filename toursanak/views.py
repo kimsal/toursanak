@@ -26,7 +26,7 @@ def single(request, slug):
     tab=tour.id
     related=tour.category_id
   related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
-  related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 4");
+  related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 6");
   if tab!=0:
     tabs=''
     #tabs=Tab.objects.raw("Select * from toursanak_tab where tour_id={}".format(tab))
@@ -74,11 +74,11 @@ def createContact(request):
     messages.add_message(request, messages.ERROR, "Sorry we can't write your contact!")
     return redirect('/contact',{})
 def PostScroll(request,id):
-  ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit 3 OFFSET {}".format(id))
+  ScrollTours = Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC limit 6 OFFSET {}".format(id))
   data = serializers.serialize('json', ScrollTours)
   return HttpResponse(data)
 def scrollCategory(request,slug,id):
-  ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit 3 OFFSET {}".format(slug,id))
+  ScrollTours = Tour.objects.raw("select * from toursanak_tour INNER JOIN toursanak_category on toursanak_tour.category_id=toursanak_category.id where toursanak_category.slug='{}' ORDER BY toursanak_tour.id DESC limit 6 OFFSET {}".format(slug,id))
   data = serializers.serialize('json', ScrollTours)
   return HttpResponse(data)
 def booking(request,tour_id,schedule_id):
@@ -136,5 +136,25 @@ def getTabDetail(request,tab_id):
   result=TabDetail.objects.raw("Select * from toursanak_tabdetail as t1 where t1.tab_id={} ORDER BY t1.id ".format(tab_id))
   data = serializers.serialize('json', result)
   return HttpResponse(data)
+def bookings(request):
+  if request.user.is_authenticated():
+    #return HttpResponse("login")
+    books=Booking.objects.raw("select toursanak_booking.id,toursanak_booking.name,toursanak_booking.description,toursanak_booking.registered_at,toursanak_tour.title,toursanak_schedule.start_date,toursanak_schedule.end_date,toursanak_schedule.price from toursanak_booking inner join toursanak_tour on toursanak_booking.tour_id=toursanak_tour.id inner join toursanak_schedule on toursanak_schedule.tour_id=toursanak_tour.id ORDER BY id DESC limit 30")
+    #return HttpResponse(books)
+    return render(request,'bookings.html',{'books':books})
+  else:
+    #return HttpResponse("Not login")
+    return redirect('/',{})
+def scrollBook(request,scroll_id):
+  books=Booking.objects.raw("select * from toursanak_booking limit 15 OFFSET {}".format(scroll_id))
+  data = serializers.serialize('json', books)
+  return HttpResponse(data)
 
 
+
+#admin
+def login(request):
+  frm =LoginForm(request.POST or None)
+  return render(request,"admin_dir/login.html",{'form':frm})
+def home(request):
+    return render(request,"admin_dir/home.html")

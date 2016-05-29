@@ -1,0 +1,73 @@
+{% include "partials/header.html" %}
+<link rel="stylesheet" type="text/css" href="/static/css/bookings.css">
+
+<div class="container">
+	<div class="row">
+		<section class="content">
+			<h1>BOOKING LIST</h1>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body" id="myView">
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+								{% for b in books %}
+									<tr data-status="pagado"data-toggle="modal" data-target="#myModal_{{b.id}}">
+										
+										<td>
+											<div class="media">												
+												<div class="media-body">
+													<span class="media-meta pull-right">
+													<h5>{{b.registered_at}}</h5></span>
+													<h5 class="title">
+														{{b.name}}
+													</h5>
+													<p class="summary hidden-xs ">
+														{{b.email}}
+													</p>
+
+												</div>
+											</div>
+										</td>
+										<td>
+										
+										</td>
+									</tr>
+								{% endfor %}									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="content-footer">
+					
+				</div>
+			</div>
+		</section>
+	<!-- Modal -->
+	{% for b in books %}
+		<div id="myModal_{{b.id}}" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		       <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		      <div class="modal-body">
+		       	<p>Tour: {{b.title}}</p><br/>
+		       	<p>Choosen Booking: From {{b.start_date}} To {{b.end_date}}</p><br/>
+		       	<p>{{b.description}}</p><br/>
+		       	<p></p>
+		      </div>
+		      <div class="modal-footer">
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+	{%endfor%}
+	<!--end Modal-->
+		
+	</div>
+</div>

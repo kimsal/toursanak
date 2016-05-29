@@ -24,8 +24,13 @@ admin.autodiscover()
 import toursanak.views
 urlpatterns = [
     # url(r'^search-form/$',"toursanak.views.search",name="search"),
-    url(r'^search/$', toursanak.views.search, name="search"),
+    #admin
+    #url(r'^admin/login/$', toursanak.views.login,name="login"), 
     url(r'^admin/', include(admin.site.urls)),
+    
+    url(r'^search/$', toursanak.views.search, name="search"),
+    url(r'^bookings/$', toursanak.views.bookings, name='bookings'),
+    url(r'^bookings/scroll/(\d+)', toursanak.views.scrollBook, name='scrollbookings'),
     url(r'^$', toursanak.views.index, name='index'),
     url(r'^(\d+)/(\d+)/booking/', toursanak.views.booking, name='booking'),
     url(r'^contact/', toursanak.views.contact, name='contact'),
@@ -35,9 +40,12 @@ urlpatterns = [
     url(r'^(?P<slug>[-\w\d]+)/$', toursanak.views.single, name='single'),
     url(r'^scroll/(\d+)/$', toursanak.views.PostScroll, name='scroll'),
     url(r'^scrollCategory/(\w+)/(\d+)/$', toursanak.views.scrollCategory, name='scrollcategory'),
-
+    
     #get data
     url(r'^gettabdetail/(\d+)/$', toursanak.views.getTabDetail, name='gettd'),
+    
+    
+    
 ]
 
 
