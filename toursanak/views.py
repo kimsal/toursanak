@@ -93,8 +93,8 @@ def createBooking(request,tour_id,schedule_id):
         name=form.cleaned_data['bookingName']
         email=form.cleaned_data['bookingEmail']
         description=form.cleaned_data['bookingDescription']
-        r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
-        r.save()
+        #r=Booking(name=name,email=email,description=description,tour_id=tour_id,schedule_id=schedule_id)
+        #r.save()
 
         tour=Tour.objects.raw("select * from toursanak_tour inner join toursanak_schedule on toursanak_tour.id=toursanak_schedule.tour_id where toursanak_tour.id={} AND toursanak_schedule.id={}".format(tour_id,schedule_id))
         
@@ -111,11 +111,14 @@ def createBooking(request,tour_id,schedule_id):
           tour_price=t.price
           body="Hello"
           #body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
-          e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
+          body="{}\n\nMore info:\nTour:{}\nStart date: {}\nEnd date: {}\nPrice: ${} \nTour url: {}\n\n From: {}".format(description,t.title,tour_startdate,tour_enddate,tour_price,tour_url,email)
+          #body="hello"
+          #e = EmailMessage('New booking request From {}'.format(name), body, to=['kimsalsan007@gmail.com'])
           #e.send()
         messages.add_message(request, messages.SUCCESS, "Your booking sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
+        raise
         messages.add_message(request, messages.ERROR, 'Sorry, Internal error!')
         return redirect('/{}/{}/booking'.format(tour_id,schedule_id),{'name':name,'email':email,'description':description})
     else:
@@ -133,4 +136,5 @@ def getTabDetail(request,tab_id):
   result=TabDetail.objects.raw("Select * from toursanak_tabdetail as t1 where t1.tab_id={} ORDER BY t1.id ".format(tab_id))
   data = serializers.serialize('json', result)
   return HttpResponse(data)
+
 
