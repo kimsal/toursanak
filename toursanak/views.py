@@ -140,6 +140,7 @@ def bookings(request):
   if request.user.is_authenticated():
     #return HttpResponse("login")
     return render(request,'bookings.html',{})
+    render(request,'bookings.html',{})
   else:
     #return HttpResponse("Not login")
     return redirect('/',{})
