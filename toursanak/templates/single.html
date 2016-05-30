@@ -202,7 +202,37 @@
             </div><!-- /carousel -->
             <!--end slide-->
         </div>
+        <!--profile-->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-lg-12 col-md-12">
+                    <div class="card hovercard">
+                        <div class="cardheader">
+                        </div>
+                        <div class="avatar">
+                            <img alt="" src="/static/images/phos.jpg">
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                <a>Pagna Soun</a>
+                            </div>
+                            <div class="desc">
+                         
+                            Oudong is located north of Phnom Penh about 40km, it used to be the capital and where they king used to stay.
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end profile-->
         <!--booking-->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h4 style="font-family: 'Playfair Display', serif;">
+           <center style="font-web:bold;line-height: 0px;"> Tour Pricing</center>
+        </h4>
+        </div>
         {% for schedule in schedules %}
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <a href="/{{tour_id}}/{{ schedule.id }}/booking/" >
@@ -233,7 +263,7 @@
         <!--start similar tour-->
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h4 style="font-family: 'Playfair Display', serif;">
-           <center style="font-web:bold;line-height: 50px;"> Similar Tour</center>
+           <center style="font-web:bold;line-height: 20px;"> Related Tour</center>
         </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -260,9 +290,6 @@
         <!--end similar tour-->
     </div>
     <!--feature image-->
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h4 style="padding: 0;margin-left: 15px; font-family: 'Playfair Display', serif;">Featured Trips</h4>
-    </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     {% for related in related_footer %}
 
