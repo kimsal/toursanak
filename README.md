@@ -7,8 +7,6 @@ to run project (go to project directory)
 	#python manage.py makemigrations
 	#python manage.py migrate
 	#python manage.py runsever [port]
-	
-
 
 Note:
 	# : command line
