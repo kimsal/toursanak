@@ -29,6 +29,7 @@ class Page(models.Model):
 class StudentProfile(models.Model):
 	id=models.AutoField(primary_key=True)
 	name=models.CharField(max_length=30)
+	email=models.CharField(max_length=50)
 	description=models.TextField(null=True,blank=True)
 	profileimage=models.ImageField(upload_to = 'static/images/profiles/')
 	published_at=models.DateTimeField(db_index=True,auto_now_add=True)

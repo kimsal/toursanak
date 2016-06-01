@@ -19,20 +19,32 @@ def contact(request):
   }
   return render(request,'contact.html',context)
 def single(request, slug):
-  tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map,array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
+  tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.studentprofile_id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map, array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
+
+  #tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map,array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
+
   tab=0
   related=''
+  profile=0
+  studentprofile=''
   for tour in tours:
     tab=tour.id
     related=tour.category_id
-  related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
+    profile=tour.studentprofile_id
+  if profile:
+    #if student profiel is selected,we retrieve tour that related to student profile
+    studentprofile=StudentProfile.objects.raw("select * from toursanak_studentprofile where id={}".format(profile))
+    related_posts=Tour.objects.raw("select * from toursanak_tour where toursanak_tour.studentprofile_id={} ORDER BY toursanak_tour.id DESC limit 4".format(profile))
+  else:
+    #print('no profile selected we retrieve tour that have the same category')
+    related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
   related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 6");
   if tab!=0:
     tabs=''
     tabs=Tab.objects.raw("Select toursanak_tab.id,toursanak_tab.title,toursanak_tabdetail.title as ttitle,toursanak_tabdetail.description from toursanak_tab inner join toursanak_tabdetail on toursanak_tab.id=toursanak_tabdetail.tab_id where toursanak_tab.tour_id={}".format(tab))
     tabhead=Tab.objects.raw("Select * from toursanak_tab where toursanak_tab.tour_id={}".format(tab))
     schedules=Schedule.objects.raw("select * from toursanak_schedule where tour_id={}".format(tab))
-    return render(request,'single.html',{'tabhead':tabhead,'tours':tours,'schedules':schedules,'tabs':tabs,'related_posts':related_posts,'related_footer':related_footer,'tour_id':tab})
+    return render(request,'single.html',{'studentprofile':studentprofile,'tabhead':tabhead,'tours':tours,'schedules':schedules,'tabs':tabs,'related_posts':related_posts,'related_footer':related_footer,'tour_id':tab})
   else:
     return render(request,'404.html')
 def category(request,slug):
@@ -59,7 +71,7 @@ def createContact(request):
         messages.add_message(request, messages.SUCCESS, "Your contact request sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
-        raise
+        #raise
         return redirect('/contact',{'name':name,'email':email,'description':description})
     else:
       raise

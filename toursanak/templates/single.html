@@ -240,6 +240,10 @@
         <!--profile-->
         <div class="col-xs-12 col-sm-12 col-md-12" style=" padding-right: 0px;
             padding-left: 0px; ">
+
+        {% for p in studentprofile %}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
              <a href="#">
             <div class="row"  data-toggle="modal" data-target="#profile">
                 <div class="col-lg-12 col-sm-12 col-lg-12 col-md-12">
@@ -247,15 +251,15 @@
                         <div class="cardheader">
                         </div>
                         <div class="avatar">
-                            <img alt="" src="/static/images/phos.jpg">
+                            <img alt="" src="/{{p.profileimage}}">
                         </div>
                         <div class="info">
                             <div class="title">
-                               Pagna Soun
+                              {{p.name}}
                             </div>
-                            <div class="desc">
+                            <div class="desc" style="text-align: left;">
                          
-                            Oudong is located north of Phnom Penh about 40km, it used to be the capital and where they king used to stay.
+                                {{p.description|truncatewords:50}}
                            
                             </div>
                         </div>
@@ -274,17 +278,9 @@
                     
                   </div>
                   <div class="modal-body">
-                    <h4><b>Panha Suon</b> </h4>
+                    <h4><b> {{p.name}}</b> </h4>
                     <p class="descript">
-                        My name is Panha Suon. I am 20 years old. I am majoring in Environmental Science at Pannasatra 
-                        University. I am also a trip leader in Toursanak. I live by these three life principles: being 
-                        happy, being healthy, and being altruistic. They give me the passion of bicycling, adventuring, 
-                        conserving environment, and contributing back to my society. Being a trip leader allows me to ride 
-                        my bike, adventure in the wilderness, and step out of my comfort zone. At the same time, it 
-                        teaches me how to be a potential and trustworthy leader. What differentiates how leadership is 
-                        taught by Toursanak and how it is taught in school is the fact that leadership in Toursanak is 
-                        more practical, hand-on, adventurous, outdoor,independent, and enjoyable.If you learn it once, it 
-                        will stay with you for the rest of your life.
+                        {{p.description}}
 
                     </p>
                   </div>
@@ -293,6 +289,7 @@
 
               </div>
         </div>
+        {% endfor %}
         <!--end pop up profile-->
         <!--end profile-->
         <!--booking-->
