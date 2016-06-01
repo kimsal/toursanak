@@ -22,16 +22,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 admin.autodiscover()
 import toursanak.views
-urlpatterns = [
-    # url(r'^search-form/$',"toursanak.views.search",name="search"),
-    #admin
-    #url(r'^admin/login/$', toursanak.views.login,name="login"), 
+urlpatterns = [ 
     url(r'^admin/', include(admin.site.urls)),
-
     url(r'^search/$', toursanak.views.search, name="search"),
     url(r'^bookings/$', toursanak.views.bookings, name='bookings'),
     url(r'^contacts/$', toursanak.views.contacts, name='contacts'),
-    url(r'^bookings/scroll/(\d+)', toursanak.views.scrollBook, name='scrollbookings'),
+    url(r'^bookings/scroll/(\d+)', toursanak.views.scrollBooks, name='scrollbookings'),
     url(r'^$', toursanak.views.index, name='index'),
     url(r'^(\d+)/(\d+)/booking/', toursanak.views.booking, name='booking'),
     url(r'^contact/', toursanak.views.contact, name='contact'),

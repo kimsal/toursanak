@@ -26,6 +26,17 @@ class Page(models.Model):
   		super(Page, self).save()
   	def __str__(self):
   		return self.name
+class StudentProfile(models.Model):
+	id=models.AutoField(primary_key=True)
+	name=models.CharField(max_length=30)
+	email=models.CharField(max_length=50)
+	description=models.TextField(null=True,blank=True)
+	profileimage=models.ImageField(upload_to = 'static/images/profiles/')
+	published_at=models.DateTimeField(db_index=True,auto_now_add=True)
+	def __str__(self):
+  		return self.name
+  	def __unicode__(self):
+  		return u'Proposal for: %s' % self.name
 class Tour(models.Model):
 	id=models.AutoField(primary_key=True)
 	title=models.CharField(max_length=400,db_index=True)
@@ -36,6 +47,7 @@ class Tour(models.Model):
 	description=models.TextField(db_index=True,null=True,blank=True)
 	keywords=models.TextField(db_index=True,null=True,blank=True)
 	category=models.ForeignKey(Category, on_delete=models.CASCADE)
+	studentprofile=models.ForeignKey(StudentProfile,null=True,blank=True)
 	map=models.TextField(null=True,blank=True)
 	#map=models.TextField()
 	created_by=models.ForeignKey(User,editable=False,on_delete=models.CASCADE,null=True,blank=True)

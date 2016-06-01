@@ -19,27 +19,32 @@ def contact(request):
   }
   return render(request,'contact.html',context)
 def single(request, slug):
-  tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map, array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
+  tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.studentprofile_id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map, array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
+
+  #tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map,array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
+
   tab=0
   related=''
+  profile=0
+  studentprofile=''
   for tour in tours:
     tab=tour.id
     related=tour.category_id
-  related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
+    profile=tour.studentprofile_id
+  if profile:
+    #if student profiel is selected,we retrieve tour that related to student profile
+    studentprofile=StudentProfile.objects.raw("select * from toursanak_studentprofile where id={}".format(profile))
+    related_posts=Tour.objects.raw("select * from toursanak_tour where toursanak_tour.studentprofile_id={} ORDER BY toursanak_tour.id DESC limit 4".format(profile))
+  else:
+    #print('no profile selected we retrieve tour that have the same category')
+    related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
   related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 6");
   if tab!=0:
     tabs=''
-    #tabs=Tab.objects.raw("Select * from toursanak_tab where tour_id={}".format(tab))
-    #tabs=Tab.objects.raw("select id,title,(select STRING_AGG((select toursanak_tabdetail.title from toursanak_tabdetail where tb_td.id=toursanak_tabdetail.id limit 1), ';') as tabdescription  from toursanak_tabdetail as tb_td INNER JOIN toursanak_tab ON toursanak_tab.id=tb_td.tab_id where toursanak_tab.id=t1.id) as descript from toursanak_tab as t1 where tour_id={}".format(tab))
-    #tabs=Tab.objects.raw("Select tb1.id,tb1.title,(Select array_to_string(ARRAY[array_agg(tb2.title),array_agg(tb2.description)],'$$$' ) as  descript from toursanak_tabdetail as tb2 where tb1.id=tb2.tab_id ) from toursanak_tab as tb1 where tb1.tour_id={}".format(tab))
-    #tabs=Tab.objects.raw("select id,title,(select GROUP_CONCAT(';;;',toursanak_tabdetail.title,'$$$',toursanak_tabdetail.description) as tabdescription  from toursanak_tabdetail INNER JOIN toursanak_tab ON toursanak_tab.id=toursanak_tabdetail.tab_id where toursanak_tab.id=t1.id) as descript from toursanak_tab as t1 where tour_id={}".format(tab))
     tabs=Tab.objects.raw("Select toursanak_tab.id,toursanak_tab.title,toursanak_tabdetail.title as ttitle,toursanak_tabdetail.description from toursanak_tab inner join toursanak_tabdetail on toursanak_tab.id=toursanak_tabdetail.tab_id where toursanak_tab.tour_id={}".format(tab))
     tabhead=Tab.objects.raw("Select * from toursanak_tab where toursanak_tab.tour_id={}".format(tab))
     schedules=Schedule.objects.raw("select * from toursanak_schedule where tour_id={}".format(tab))
-    #return HttpResponse(tabs.query)
-    #data = serializers.serialize('json', tabs)
-    #return HttpResponse(tabs.query)
-    return render(request,'single.html',{'tabhead':tabhead,'tours':tours,'schedules':schedules,'tabs':tabs,'related_posts':related_posts,'related_footer':related_footer,'tour_id':tab})
+    return render(request,'single.html',{'studentprofile':studentprofile,'tabhead':tabhead,'tours':tours,'schedules':schedules,'tabs':tabs,'related_posts':related_posts,'related_footer':related_footer,'tour_id':tab})
   else:
     return render(request,'404.html')
 def category(request,slug):
@@ -66,7 +71,7 @@ def createContact(request):
         messages.add_message(request, messages.SUCCESS, "Your contact request sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
-        raise
+        #raise
         return redirect('/contact',{'name':name,'email':email,'description':description})
     else:
       raise
@@ -141,13 +146,13 @@ def getTabDetail(request,tab_id):
 def bookings(request):
   if request.user.is_authenticated():
     #return HttpResponse("login")
-    books=Booking.objects.raw("select toursanak_booking.id,toursanak_booking.name,toursanak_booking.description,toursanak_booking.registered_at,toursanak_tour.title,toursanak_schedule.start_date,toursanak_schedule.end_date,toursanak_schedule.price from toursanak_booking inner join toursanak_tour on toursanak_booking.tour_id=toursanak_tour.id inner join toursanak_schedule on toursanak_schedule.tour_id=toursanak_tour.id ORDER BY id DESC limit 30")
+    books=Booking.objects.raw("select toursanak_booking.id,toursanak_booking.name,toursanak_booking.description,toursanak_booking.registered_at,toursanak_tour.title,toursanak_schedule.start_date,toursanak_schedule.end_date,toursanak_schedule.price from toursanak_booking inner join toursanak_tour on toursanak_booking.tour_id=toursanak_tour.id inner join toursanak_schedule on toursanak_schedule.tour_id=toursanak_tour.id ORDER BY id DESC")
     #return HttpResponse(books)
     return render(request,'bookings.html',{'books':books})
   else:
     #return HttpResponse("Not login")
     return redirect('/',{})
-def scrollBook(request,scroll_id):
+def scrollBooks(request,scroll_id):
   books=Booking.objects.raw("select * from toursanak_booking limit 15 OFFSET {}".format(scroll_id))
   data = serializers.serialize('json', books)
   return HttpResponse(data)
