@@ -9,8 +9,8 @@
 </script>
 <div class="banner1">
     <center style="color:white;line-height: 300%;">
-        <label class="hidden-xs" style="color:#e4e3e3;font-family: font-family: 'PT Serif',serif;">
-            Learn and experience mangrove reforestation
+        <label class="hidden-xs" style="color:gray;font-family: font-family: 'PT Serif',serif;">
+          We also except Bitcoin
         </label>
         <a href="/contact">
             <button style="background: none;color: white;" class="btn btn-default"><i class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -60,13 +60,15 @@
 <br>
 <div class="container">
     <!--desciption-->
-    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7" >
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; " >
             <p class="descript">
                 {{ tour.description }}
             </p>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
             <div class="panel with-nav-tabs panel-default" style="border: none">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs" id="head_tab">
@@ -91,7 +93,7 @@
                 </div>
                 
                 <div class="panel-body" style="padding:0px;">
-                    <div class="tab-content" id="tab_content">
+                    <div class="tab-content table-responsive" id="tab_content">
                         <!-- <div class="tab-pane fade in active" id="tab1default">
                             <br/>
                           
@@ -115,20 +117,20 @@
                                 //alert("{{tab.id}}:"+help);
                                 if(arr_check.indexOf("{{tab.id}}")>-1){
                                     //alert("id:{{tab.id}} if"+check);
-                                    html='<tr><td>'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr>';
+                                    html='<tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3">'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr>';
                                     document.getElementById('tab_row_{{tab.id}}').innerHTML+=html;
                                 }
                                 else{
 
                                    //alert("else");
-                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td style="width:30%;border-top:none;">{{tab.ttitle|linebreaks}}</td><td>{{tab.description|linebreaks}}</td></tr></tbody></table></p></div>';
+                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td style="border-top:none;">{{tab.ttitle|linebreaks}}</td><td  class="col-xs-12 col-sm-9 col-md-9 col-lg-9" >{{tab.description|linebreaks}}</td></tr></tbody></table></p></div>';
                                     if(check==1){
                                         //alert("id:{{tab.id}} else if"+check);
-                                        html='<div class="tab-pane fade in active" id="tab{{tab.id}}default"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td style="width:30%;border-top:none;">'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></div>';
+                                        html='<div class="tab-pane fade in active" id="tab{{tab.id}}default"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style=";border-top:none;">'+title.replace(/\n/gi,'<br/>')+'</td><td class="col-xs-12 col-sm-9 col-md-9 col-lg-9">'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></div>';
                                     }
                                     else{
                                         ///alert("id:{{tab.id}} else else"+check);
-                                        html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td style="width:30%;border-top:none;">'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></p></div>';
+                                        html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="border-top:none;" >'+title.replace(/\n/gi,'<br/>')+'</td><td class="col-xs-12 col-sm-9 col-md-9 col-lg-9"> '+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></p></div>';
                                     }
                                     document.getElementById('tab_content').innerHTML+=html;
                                 }
@@ -166,10 +168,11 @@
     <!--end description-->
 
     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
             <a href="#" data-toggle="modal" data-target="#slide1" >
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 package-box-profile"
-                style="width: 100%;height:70px;">
+                style="" id="galery">
                     <center>
                         <h4 style="color: #ffffff;line-height:0px;font-weight: bold;line-height:300%;">
                         <i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -180,6 +183,12 @@
                 </div>
             </a>
         </div>
+        <!--Random Gallery-->
+        <script type="text/javascript">
+            var gallery=['/static/images/nature1.jpg','/static/images/nature2.jpg','/static/images/nature3.jpg','/static/images/nature4.jpg'];
+            var random=Math.floor(Math.random()*4);
+            document.getElementById('galery').setAttribute("style", "background: url('"+gallery[random]+"');");
+        </script>
         <!--pop up slide-->
             <div id="slide1" class="modal fade" role="dialog">
               <div class="modal-dialog">
@@ -237,8 +246,9 @@
         <!--profile-->
         
         {% for p in studentprofile %}
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <hr/>
+        <div class="col-xs-12 col-sm-12 col-md-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
+            
              <a href="#">
             <div class="row"  data-toggle="modal" data-target="#profile">
                 <div class="col-lg-12 col-sm-12 col-lg-12 col-md-12">
@@ -290,14 +300,18 @@
         <!--end profile-->
         <!--booking-->
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <hr/>
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
+            
             <h4 style="font-family: 'Playfair Display', serif;">
                <center style="font-web:bold;line-height: 0px;"> Tour Pricing</center>
+               <hr/>
             </h4>
         </div>
         {% for schedule in schedules %}
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
             <a href="/{{tour_id}}/{{ schedule.id }}/booking/" >
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 package-box"style="width: 100%;">
                     <center>
@@ -324,13 +338,17 @@
 
         <!--end booking-->
         <!--start similar tour-->
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <hr/>
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
+            
         <h4 style="font-family: 'Playfair Display', serif;">
            <center style="font-web:bold;line-height: 20px;"> Related Tour</center>
+            <hr/>
         </h4>
         </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
                {% for related in related_posts %}
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " style="padding:0px;" >
                     <div class="hovereffect thumbnail ">
@@ -355,11 +373,15 @@
     </div>
     <!--feature image-->
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <hr/>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; ">
+            <br/> <br/>
+            <center style="font-weight: bold;font-size:20px;">Feature Tours</center>
+            <hr>
+       
     {% for related in related_footer %}
 
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 25px;">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5px;">
             {% if related.feature_image == none %}
                 <div class="hovereffect">
                     <a href="{% url 'single' related.slug %}">
