@@ -1,3 +1,9 @@
+
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px;
+     border-bottom: 0px solid #e5e5e5; 
+}
 .borderless td, .borderless th {
     border: none;
     border-top:none;
