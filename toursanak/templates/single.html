@@ -261,7 +261,6 @@
             </div>
             </a>
         </div>
-         {% endfor %}
         <!--pop up profile -->
         <div id="profile" class="modal fade" role="dialog">
               <div class="modal-dialog">
@@ -272,17 +271,9 @@
                     
                   </div>
                   <div class="modal-body">
-                    <h4><b>Panha Suon</b> </h4>
+                    <h4><b> {{p.name}}</b> </h4>
                     <p class="descript">
-                        My name is Panha Suon. I am 20 years old. I am majoring in Environmental Science at Pannasatra 
-                        University. I am also a trip leader in Toursanak. I live by these three life principles: being 
-                        happy, being healthy, and being altruistic. They give me the passion of bicycling, adventuring, 
-                        conserving environment, and contributing back to my society. Being a trip leader allows me to ride 
-                        my bike, adventure in the wilderness, and step out of my comfort zone. At the same time, it 
-                        teaches me how to be a potential and trustworthy leader. What differentiates how leadership is 
-                        taught by Toursanak and how it is taught in school is the fact that leadership in Toursanak is 
-                        more practical, hand-on, adventurous, outdoor,independent, and enjoyable.If you learn it once, it 
-                        will stay with you for the rest of your life.
+                        {{p.description}}
 
                     </p>
                   </div>
@@ -291,6 +282,7 @@
 
               </div>
         </div>
+        {% endfor %}
         <!--end pop up profile-->
         <!--end profile-->
         <!--booking-->
