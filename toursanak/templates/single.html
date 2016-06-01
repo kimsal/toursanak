@@ -167,7 +167,31 @@
 
     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <!--slide-->
+            <a href="#" data-toggle="modal" data-target="#slide1" >
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 package-box-profile"
+                style="width: 100%;height:70px;">
+                    <center>
+                        <h4 style="color: #ffffff;line-height:0px;font-weight: bold;line-height:300%;">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                           Gallery
+                        </h4>
+                    </center>
+                   
+                </div>
+            </a>
+        </div>
+        <!--pop up slide-->
+            <div id="slide1" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                  </div>
+                  <div class="modal-body">
+                    
+                    <!--slide-->
             <!-- Carousel -->
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
                 <!-- Indicators -->
@@ -184,11 +208,11 @@
                 <script type="text/javascript">
                         var images="{{tour.imagename}}".split(',');
                         for(var i=0;i<images.length;i++){
-                            //alert(images[i]);
+                            
                             if(i==0)
-                                document.getElementById('slide_image').innerHTML+='<div class="item active"><img src="/'+images[i]+'" alt="NO" style="height:220px;"><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
+                                document.getElementById('slide_image').innerHTML+='<div class="item active"><img src="/'+images[i]+'" alt="NO"><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
                             else
-                                document.getElementById('slide_image').innerHTML+='<div class="item"><img src="/'+images[i]+'" alt="NO" style="height:220px;"><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
+                                document.getElementById('slide_image').innerHTML+='<div class="item"><img src="/'+images[i]+'" alt="NO" ><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
                             document.getElementById('point_slide').innerHTML+='<li data-target="#carousel-example-generic" data-slide-to="'+i+'" class="active"></li>';
                         }
                     </script>
@@ -201,7 +225,15 @@
                 </a>
             </div><!-- /carousel -->
             <!--end slide-->
+
+                    
+                  </div>
+                  
+                </div>
+
+              </div>
         </div>
+        <!--end pop up slide-->
         <!--profile-->
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="row">
@@ -309,7 +341,7 @@
                         {% else %}
                              <img class="myimg img-responsive" src="/{{related.feature_image}}" alt="">
                                 <div class="overlay">
-                                    <h2 style="font-size:12px;font-weight:bold;">{{ related.title }}</h2>
+                                    <h2 style="font-size:12px;color:black;font-weight:bold;background: rgba(255, 255, 255, 0.5);">{{ related.title }}</h2>
                                 </div>
                        {%endif%} 
                         </a>
