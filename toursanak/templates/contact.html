@@ -34,7 +34,9 @@
 <br>
 <div class="container">
     <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-        <center>
+    
+          {% if messages %}
+            <center>
            {% for message in messages %}
                 {% if 'error' in message.tags %}
                     <div class="alert alert-danger">
@@ -46,8 +48,10 @@
                     </div>
                 {%endif%}   
             {% endfor %}
-        </center>
+            </center>
+        {% endif %}
         <div class="form-area">
+
             <form role="form" name="ContactForm" method="POST" action="/createContact/">
                 {% csrf_token %}
                 <h3 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">How can they reach you?</h3>
