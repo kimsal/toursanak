@@ -27,10 +27,11 @@
     
 }
 .banner1{
-    background-color:#39AB49;
+    background-color:#00e7b4;
     min-height: 50px;
     clear: both;
     margin-top: -19px;
+    color: black;
 }
 .banner2{
     height: 300px;
@@ -362,7 +363,7 @@ div.hovereffect.thumbnail {
 border: 1 solid thin gray;
 }
 .package-box{
-    background-color: #39AB49;;
+    background-color: #00e7b4;
     border-radius: 3px;
 
     /*padding:0px 10px;*/
@@ -372,9 +373,9 @@ border: 1 solid thin gray;
 }
 .package-box-profile{
     /*background-color: #39AB49;*/
-    background: url("/static/images/nature1.jpg");
+    
     border-radius: 3px;
-
+width: 100%;height:70px;
     /*padding:0px 10px;*/
     margin-bottom: 4px;
     margin-top:5px;
@@ -713,4 +714,7 @@ color: #000;
 
 .modal-backdrop.in {
     opacity: 0.9;
+}
+.menu1:hover:{
+    background-color: red;
 }
