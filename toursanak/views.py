@@ -31,13 +31,12 @@ def single(request, slug):
     tab=tour.id
     related=tour.category_id
     profile=tour.studentprofile_id
-  #return HttpResponse(profile)
-  try:
+  if profile:
+    #if student profiel is selected,we retrieve tour that related to student profile
     studentprofile=StudentProfile.objects.raw("select * from toursanak_studentprofile where id={}".format(profile))
     related_posts=Tour.objects.raw("select * from toursanak_tour where toursanak_tour.studentprofile_id={} ORDER BY toursanak_tour.id DESC limit 4".format(profile))
-    #return HttpResponse(studentprofile.query)
-  except:
-    #print('no profile selected')
+  else:
+    #print('no profile selected we retrieve tour that have the same category')
     related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
   related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 6");
   if tab!=0:
@@ -72,7 +71,7 @@ def createContact(request):
         messages.add_message(request, messages.SUCCESS, "Your contact request sent succesfully. We'll contact you soon!")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
       except:
-        raise
+        #raise
         return redirect('/contact',{'name':name,'email':email,'description':description})
     else:
       raise

@@ -235,6 +235,7 @@
         </div>
         <!--end pop up slide-->
         <!--profile-->
+        {% for p in studentprofile %}
         <div class="col-xs-12 col-sm-12 col-md-12">
              <a href="#">
             <div class="row"  data-toggle="modal" data-target="#profile">
@@ -243,15 +244,15 @@
                         <div class="cardheader">
                         </div>
                         <div class="avatar">
-                            <img alt="" src="/static/images/phos.jpg">
+                            <img alt="" src="/{{p.profileimage}}">
                         </div>
                         <div class="info">
                             <div class="title">
-                               Pagna Soun
+                              {{p.name}}
                             </div>
-                            <div class="desc">
+                            <div class="desc" style="text-align: left;">
                          
-                            Oudong is located north of Phnom Penh about 40km, it used to be the capital and where they king used to stay.
+                                {{p.description|truncatewords:50}}
                            
                             </div>
                         </div>
@@ -260,6 +261,7 @@
             </div>
             </a>
         </div>
+         {% endfor %}
         <!--pop up profile -->
         <div id="profile" class="modal fade" role="dialog">
               <div class="modal-dialog">
