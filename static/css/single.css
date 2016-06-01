@@ -372,7 +372,7 @@ border: 1 solid thin gray;
 }
 .package-box-profile{
     /*background-color: #39AB49;*/
-    background: url("/static/images/images12.jpg");
+    background: url("/static/images/nature1.jpg");
     border-radius: 3px;
 
     /*padding:0px 10px;*/
@@ -546,7 +546,7 @@ body {
 .card .card-comments {
     padding: 20px;
     margin: 0;
-    background-color: #f8f8f8;
+    background-color:rgba(190, 227, 234, 0.12);
 }
 
 .card .card-comments .comments-collapse-toggle {
@@ -650,6 +650,7 @@ body {
 }
 
 .card.hovercard {
+
     position: relative;
     padding-top: 0;
     overflow: hidden;
@@ -658,6 +659,7 @@ body {
 }
 
 .card.hovercard .cardheader {
+    opacity: 0.80;
     background: url("/static/images/214505,xcitefun-lush-green-nature-wallpapers-01.jpg");
     background-size: cover;
     height: 135px;
