@@ -205,9 +205,6 @@
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" >
                 <!-- Indicators -->
                 <ol class="carousel-indicators" style="z-index:0px;"  id="point_slide">
-                   <!--  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
                 </ol>
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" style="border-radius: 3px;" id="slide_image">
@@ -216,6 +213,7 @@
                 </div>
                 <script type="text/javascript">
                         var images="{{tour.imagename}}".split(',');
+                        images.push("{{tour.feature_image}}");
                         for(var i=0;i<images.length;i++){
                             
                             if(i==0)
@@ -305,7 +303,7 @@
             padding-left: 0px; ">
             
             <h4 style="font-family: 'Playfair Display', serif;">
-               <center style="font-web:bold;line-height: 0px;"> Tour Pricing</center>
+               <center style="font-web:bold;line-height: 0px;font-weight: bold;font-size: 20px;"> Tour Pricing</center>
                <hr/>
             </h4>
         </div>
@@ -343,7 +341,7 @@
             padding-left: 0px; ">
             
         <h4 style="font-family: 'Playfair Display', serif;">
-           <center style="font-web:bold;line-height: 20px;"> Related Tour</center>
+           <center style="font-web:bold;line-height: 20px;font-weight: bold;font-size: 20px;"> Related Tour</center>
             <hr/>
         </h4>
         </div>
