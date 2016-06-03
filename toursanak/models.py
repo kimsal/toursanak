@@ -29,9 +29,9 @@ class Page(models.Model):
 class StudentProfile(models.Model):
 	id=models.AutoField(primary_key=True)
 	name=models.CharField(max_length=30)
-	email=models.CharField(max_length=50)
+	email=models.CharField(max_length=50,null=True,blank=True)
 	description=models.TextField(null=True,blank=True)
-	profileimage=models.ImageField(upload_to = 'static/images/profiles/')
+	profileimage=models.ImageField(upload_to = 'static/images/profiles/',null=True,blank=True)
 	published_at=models.DateTimeField(db_index=True,auto_now_add=True)
 	def __str__(self):
   		return self.name
