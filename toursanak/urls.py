@@ -25,6 +25,7 @@ import toursanak.views
 urlpatterns = [ 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^search/$', toursanak.views.search, name="search"),
+    url(r'^about/$', toursanak.views.about, name="about"),
     url(r'^bookings/$', toursanak.views.bookings, name='bookings'),
     url(r'^contacts/$', toursanak.views.contacts, name='contacts'),
     url(r'^bookings/scroll/(\d+)', toursanak.views.scrollBooks, name='scrollbookings'),
