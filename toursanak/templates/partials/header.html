@@ -70,8 +70,17 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
              {% for category in categories %}
-                <li><a href="/cat/{{category.slug}}" style="font-weight: 500;color:black;">{{category.name}}</a></li>
+                <li>
+                    <a href="/cat/{{category.slug}}" style="font-weight: 500;color:black;">{
+                        {category.name}}
+                    </a>
+                </li>
             {% endfor %}
+            <li>
+                <a href="/about" style="font-weight: 500;color:black;">
+                    About us
+                </a>
+            </li>
             {% if user.is_authenticated %}
                 <li><a href="/bookings" style="font-weight: 500;color:black;">Booking List</a></li>
                 <li><a href="/contacts" style="font-weight: 500;color:black;">Contact List</a></li>
