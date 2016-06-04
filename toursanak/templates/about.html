@@ -30,7 +30,7 @@
     });
 </script>
 <!--end scroll menu top-->
-<div class="banner2" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/static/images/banner/new-zealands-nature_banner.jpg");'>
+<div class="banner2" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/static/images/banner/about_banner.png");'>
     <center>
         <label class="boxbanner" >
             {{ tour.title }}
@@ -117,11 +117,39 @@
             padding-left: 0px; " >
 		<div class='list-group gallery'>
             
+           {% for student in students%}
             <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
-                <a href="#" data-toggle="modal" data-target="#myProfile" class="thumbnail fancybox" rel="lightbox">
-                    <img style="height:200px;width:100%;"  class="img-responsive" alt="" src="/static/images/profiles/anne.jpg" />
+                <a href="#" data-toggle="modal" data-target="#myProfile_{{student.id}}" class="thumbnail fancybox" rel="lightbox">
+                    <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/static/images/profiles/sela.jpg"/>
                 </a>
-            </div>    
+            </div> 
+           <div id="myProfile_{{student.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                        <div class="fb-profile">
+                            <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.image}}" alt="Profile image example"/>
+                            <div class="fb-profile-text">
+                                <h1>Lead by: <b>{{student.name}}</b></h1>
+                                <br/><br/>
+                                <p style="font-size:15px;text-align:justify;">
+                                    {{student.description}}
+                                </p>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            {% endfor %}
+
+
+        
 
             <!-- <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
                 <a class="thumbnail fancybox" rel="lightbox" href="http://placehold.it/300x320.png">
@@ -135,26 +163,6 @@
 	</div>
 	<!--end profile-->
 	<!--pop up profile-->
-			<div id="myProfile" class="modal fade"  role="dialog">
-			  <div class="modal-dialog" >
-			    <div class="modal-content" style="background-color:white;">
-			      <div class="modal-body">
-			       		<div class="fb-profile">
-					        <img align="left" class="fb-image-lg" src="/static/images/banner/bbb.jpg" alt="Profile image example"/>
-					        <img align="left" class="img-responsive fb-image-profile thumbnail" src="/static/images/profiles/anne.jpg" alt="Profile image example"/>
-					        <div class="fb-profile-text">
-					            <h1>Eli Macy</h1>
-					            <br/><br/><br/><br>
-					            <p class="descript" style="font-size:157x;text-align:justify;">
-					            	YesLearn and experience mangrove reforestation, and help protect the local river and environment. On top of that, we will be paddling to Rabbit Island. We will have time to swim and laze on a quiet beach. Enjoy fresh seafood before heading back to Phnom Penh.Learn and experience mangrove reforestation, and help protect the local river and environment. On top of that, we will be paddling to Rabbit Island. We will have time to swim and laze on a quiet beach. Enjoy fresh seafood before heading back to Phnom Penh.Learn and experience mangrove reforestation, and help protect the local river and environment. On top of that, we will be paddling to Rabbit Island. We will have time to swim and laze on a quiet beach. Enjoy fresh seafood before heading back to Phnom Penh. 
-					            </p>
-					        </div>
-					    </div>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
 
 	<!--end pop up profile-->
 </div>
