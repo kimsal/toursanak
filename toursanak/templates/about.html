@@ -124,18 +124,15 @@
                 </a>
             </div> 
            <div id="myProfile_{{student.id}}" class="modal fade" role="dialog">
-              <div class="modal-dialog">
+              <div class="modal-dialog" style="background-color: white;">
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
                   <div class="modal-body">
                         <div class="fb-profile">
-                            <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
-                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="Profile image example"/>
+                            <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
+                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 5px;"/>
                             <div class="fb-profile-text">
-                                <h1>Lead by: <b>{{student.name}}</b></h1>
-                                <br/><br/>
+                                <h4>Lead by: <b>{{student.name}}</b></h4>
+                                
                                 <p style="font-size:15px;text-align:justify;">
                                     {{student.description}}
                                 </p>
