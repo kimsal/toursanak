@@ -10,7 +10,7 @@
 <div class="banner1">
     <center style="color:white;line-height: 300%;">
         <label class="hidden-xs" style="color:white;font-family: font-family: 'PT Serif',serif;">
-          We also except Bitcoin
+          We also accept Bitcoin
         </label>
         <a href="/contact">
             <button style="background: none;color: white;" class="btn btn-default"><i  class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -78,6 +78,7 @@
                                  Map
                             </a>
                         </li> -->
+
                     </ul>
                     {% for tab in tabhead %}
                         <script type="text/javascript">
@@ -94,7 +95,17 @@
                 
                 <div class="panel-body" style="padding:0px;">
                     <div class="tab-content table-responsive" id="tab_content">
-                                  
+                       <!--  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            Hello Mytab
+                            </div>
+                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                            Happy Holiday
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            Hardway
+                            </div>
+                        </div> -->
                     </div>
                     <script type="text/javascript">
                         check=0;
@@ -109,26 +120,34 @@
                                 //alert("{{tab.id}}:"+help);
                                 if(arr_check.indexOf("{{tab.id}}")>-1){
                                     //alert("id:{{tab.id}} if"+check);
-                                    html='<tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3">'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr>';
+                                    // html='<tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3">'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr>';
+                                    //my replace//
+                                    html='<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 descript">'+title.replace(/\n/gi,'<br/>')+'</div>'+description.replace(/\n/gi,'<br/>')+'<div></div>';
                                     document.getElementById('tab_row_{{tab.id}}').innerHTML+=html;
                                 }
                                 else{
 
                                    //alert("else");
-                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td style="border-top:none;">{{tab.ttitle|linebreaks}}</td><td  class="col-xs-12 col-sm-9 col-md-9 col-lg-9" >{{tab.description|linebreaks}}</td></tr></tbody></table></p></div>';
+                                    html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td style="border-top:none;padding:0px;">{{tab.ttitle|linebreaks}}</td><td  class="col-xs-12 col-sm-9 col-md-9 col-lg-9" >{{tab.description|linebreaks}}</td></tr></tbody></table></p></div>';
+
+                                    //replace code
+
+
+
+
                                     if(check==1){
                                         //alert("id:{{tab.id}} else if"+check);
-                                        html='<div class="tab-pane fade in active" id="tab{{tab.id}}default"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style=";border-top:none;">'+title.replace(/\n/gi,'<br/>')+'</td><td class="col-xs-12 col-sm-9 col-md-9 col-lg-9">'+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></div>';
+                                        html='<div class="tab-pane fade in active" id="tab{{tab.id}}default"><tbody id="tab_row_{{tab.id}}"><div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 descript" style=";border-top:none;padding:0px;">'+title.replace(/\n/gi,'<br/>')+'</div><div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 descript" style="padding:0px;">'+description.replace(/\n/gi,'<br/>')+'</div></tbody></div>';
                                     }
                                     else{
                                         ///alert("id:{{tab.id}} else else"+check);
-                                        html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="border-top:none;" >'+title.replace(/\n/gi,'<br/>')+'</td><td class="col-xs-12 col-sm-9 col-md-9 col-lg-9"> '+description.replace(/\n/gi,'<br/>')+'</td></tr></tbody></table></p></div>';
+                                        html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 descript" style="border-top:none;" >'+title.replace(/\n/gi,'<br/>')+'</div><div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 descript" style="padding:0px;"> '+description.replace(/\n/gi,'<br/>')+'</div></tbody></p></div>';
                                     }
                                     document.getElementById('tab_content').innerHTML+=html;
                                 }
                                 check++;
                                 arr_check.push("{{tab.id}}");                              
-                                //alert("{{tab.id}}");
+                                //alert("{{tab.id}}")yy
                             </script>
                            <!--  <div class="tab-pane fade" id="tab2default">
                                 <p class="descript">
@@ -185,10 +204,7 @@
               <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    
-                  </div>
+                  
                   <div class="modal-body">
                     
                     <!--slide-->

@@ -167,6 +167,8 @@ def contacts(request):
     #return HttpResponse("Not login")
     return redirect('/',{})
 
+def about(request):
+  return render(request,'about.html')
 #admin
 def login(request):
   frm =LoginForm(request.POST or None)

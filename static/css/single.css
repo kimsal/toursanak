@@ -33,7 +33,7 @@
     
 }
 .banner1{
-    background-color:#00e7b4;
+    background-color:#3fa765;
     min-height: 50px;
     clear: both;
     margin-top: -19px;
@@ -369,7 +369,7 @@ div.hovereffect.thumbnail {
 border: 1 solid thin gray;
 }
 .package-box{
-    background-color: #00e7b4;
+    background-color: #3fa765;
     border-radius: 3px;
 
     /*padding:0px 10px;*/
@@ -395,6 +395,7 @@ width: 100%;height:70px;
     line-height: 1.5;
     color: #222;
     font-weight: 300;
+
 
 }
 /*banner*/
@@ -422,6 +423,15 @@ width: 100%;height:70px;
     background-size: cover;
     background-color: black;
 
+}
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+     border: 0px solid #ddd; 
 }
 /*scroll top*/
 
