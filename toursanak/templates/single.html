@@ -122,7 +122,7 @@
                                     //alert("id:{{tab.id}} if"+check);
                                     // html='<tr><td class="col-xs-12 col-sm-3 col-md-3 col-lg-3">'+title.replace(/\n/gi,'<br/>')+'</td><td>'+description.replace(/\n/gi,'<br/>')+'</td></tr>';
                                     //my replace//
-                                    html='<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 descript">'+title.replace(/\n/gi,'<br/>')+'</div>'+description.replace(/\n/gi,'<br/>')+'<div></div>';
+                                    html='<div style="border-top:none;padding:0px;" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 descript">'+title.replace(/\n/gi,'<br/>')+'</div><div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 descript" style="border-top:none;padding:0px;" >'+description.replace(/\n/gi,'<br/>')+'<hr></div></div>';
                                     document.getElementById('tab_row_{{tab.id}}').innerHTML+=html;
                                 }
                                 else{
@@ -132,16 +132,13 @@
 
                                     //replace code
 
-
-
-
                                     if(check==1){
                                         //alert("id:{{tab.id}} else if"+check);
-                                        html='<div class="tab-pane fade in active" id="tab{{tab.id}}default"><tbody id="tab_row_{{tab.id}}"><div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 descript" style=";border-top:none;padding:0px;">'+title.replace(/\n/gi,'<br/>')+'</div><div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 descript" style="padding:0px;">'+description.replace(/\n/gi,'<br/>')+'</div></tbody></div>';
+                                        html='<div class="tab-pane fade in active" id="tab{{tab.id}}default"><tbody id="tab_row_{{tab.id}}"><div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 descript" style="border-top:none;padding:0px;">'+title.replace(/\n/gi,'<br/>')+'</div><div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 descript" style="padding:0px;">'+description.replace(/\n/gi,'<br/>')+'<hr></div></tbody></table></p></div>';
                                     }
                                     else{
                                         ///alert("id:{{tab.id}} else else"+check);
-                                        html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 descript" style="border-top:none;" >'+title.replace(/\n/gi,'<br/>')+'</div><div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 descript" style="padding:0px;"> '+description.replace(/\n/gi,'<br/>')+'</div></tbody></p></div>';
+                                        html='<div class="tab-pane fade" id="tab{{tab.id}}default"><p class="descript"><table class="table borderless"><tbody id="tab_row_{{tab.id}}"><div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 descript" style="border-top:none;" >'+title.replace(/\n/gi,'<br/>')+'</div><div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 descript" style="padding:0px;"> '+description.replace(/\n/gi,'<br/>')+'<hr></div></tbody></table></p></div>';
                                     }
                                     document.getElementById('tab_content').innerHTML+=html;
                                 }
@@ -386,7 +383,7 @@
        
     {% for related in related_footer %}
 
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5px;">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 20px;">
             {% if related.feature_image == none %}
                 <div class="hovereffect">
                     <a href="{% url 'single' related.slug %}">

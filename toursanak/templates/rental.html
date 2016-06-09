@@ -1,0 +1,159 @@
+{% include "partials/header.html" %}
+<!--start container-->
+<style type="text/css">
+.cuadro_intro_hover{
+    	padding: 0px;
+		position: relative;
+		overflow: hidden;
+		height: 200px;
+		margin-top: 5px;
+	}
+	.cuadro_intro_hover:hover .caption{
+		opacity: 1;
+		transform: translateY(-150px);
+		-webkit-transform:translateY(-150px);
+		-moz-transform:translateY(-150px);
+		-ms-transform:translateY(-150px);
+		-o-transform:translateY(-150px);
+	}
+	.cuadro_intro_hover img{
+		z-index: 4;
+	}
+	.cuadro_intro_hover .caption{
+		position: absolute;
+		top:150px;
+		-webkit-transition:all 0.3s ease-in-out;
+		-moz-transition:all 0.3s ease-in-out;
+		-o-transition:all 0.3s ease-in-out;
+		-ms-transition:all 0.3s ease-in-out;
+		transition:all 0.3s ease-in-out;
+		width: 100%;
+	}
+	.cuadro_intro_hover .blur{
+		background-color: rgba(0,0,0,0.7);
+		height: 300px;
+		z-index: 5;
+		position: absolute;
+		width: 100%;
+	}
+	.cuadro_intro_hover .caption-text{
+		z-index: 10;
+		color: #fff;
+		position: absolute;
+		height: 300px;
+		text-align: center;
+		top:-20px;
+		width: 100%;
+	}
+</style>
+<script type="text/javascript">
+    var html='';   
+    var title='',description=''; 
+    var arr_check=[];    
+    var help=0;        
+    var check=0;
+</script>
+<div class="banner1">
+    <center style="color:white;line-height: 300%;">
+        <label class="hidden-xs" style="color:white;font-family: font-family: 'PT Serif',serif;">
+          We also accept Bitcoin
+        </label>
+        <a href="/contact">
+            <button style="background: none;color: white;" class="btn btn-default"><i  class="fa fa-envelope-o" aria-hidden="true"></i>
+               Contact
+            </button>
+        </a>
+    </center>
+</div>
+<!--scroll menu top fix-->
+<script type="text/javascript">
+    $(window).scroll(function(){
+        var banner1 = $('.banner1'),
+                scroll = $(window).scrollTop();
+        if (scroll >=40) banner1.addClass('myfix');
+        else banner1.removeClass('myfix');
+    });
+</script>
+<!--end scroll menu top-->
+<div class="banner2" style='background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/static/images/banner/new-zealands-nature_banner.jpg");'>
+    <center>
+        <label class="boxbanner" >
+            We rend everything below!
+        </label>
+        <br/>
+        <label style="color: #d7d7d7;font-size:20px;font-family: 'PT Serif',serif;">
+             {{tour.short_description}}
+        </label>
+    </center>
+</div>
+<br />
+<div class="container">
+    <div class="row">
+    	<div class="col-lg-3" style="margin-top:23px;">
+			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
+				<p style="text-align:center; margin-top:20px;">
+					<img src="http://trovacamporella.com/img/trovacamporella-fiat500.png" class="img-responsive" alt="">
+				</p>
+				<div class="caption">
+					<div class="blur"></div>
+					<div class="caption-text">
+						<h4 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Bicycle Racing in Cambodia </h4>
+						<label>Price:20$/day</label><br>
+						<label>Status:New</label>
+					</div>
+				</div>
+			</div>
+	    </div>
+	    <div class="col-lg-3" style="margin-top:23px;">
+			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
+				<p style="text-align:center; margin-top:20px;">
+					<img src="http://trovacamporella.com/img/trovacamporella-fiat500.png" class="img-responsive" alt="">
+				</p>
+				<div class="caption">
+					<div class="blur"></div>
+					<div class="caption-text">
+						<h4 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Bicycle Racing in Cambodia </h4>
+						<label>Price:20$/day</label><br>
+						<label>Status:New</label>
+					</div>
+				</div>
+			</div>
+	    </div>
+	    <div class="col-lg-3" style="margin-top:23px;">
+			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
+				<p style="text-align:center; margin-top:20px;">
+					<img src="http://trovacamporella.com/img/trovacamporella-fiat500.png" class="img-responsive" alt="">
+				</p>
+				<div class="caption">
+					<div class="blur"></div>
+					<div class="caption-text">
+						<h4 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Bicycle Racing in Cambodia </h4>
+						<label>Price:20$/day</label><br>
+						<label>Status:New</label>
+					</div>
+				</div>
+			</div>
+	    </div>
+	    <div class="col-lg-3" style="margin-top:23px;">
+			<div class="cuadro_intro_hover " style="background-color:#cccccc;">
+				<p style="text-align:center; margin-top:20px;">
+					<img src="http://trovacamporella.com/img/trovacamporella-fiat500.png" class="img-responsive" alt="">
+				</p>
+				<div class="caption">
+					<div class="blur"></div>
+					<div class="caption-text">
+						<h4 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">Bicycle Racing in Cambodia </h4>
+						<label>Price:20$/day</label><br>
+						<label>Status:New</label>
+					</div>
+				</div>
+			</div>
+	    </div>
+	    
+    </div>
+</div>
+        
+
+</div>
+</body>
+</html>
