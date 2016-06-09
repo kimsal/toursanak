@@ -170,7 +170,8 @@ def contacts(request):
     return redirect('/',{})
 
 def about(request):
-  return render(request,'about.html')
+  students=StudentProfile.objects.raw("Select * from toursanak_studentprofile ORDER By name ASC")
+  return render(request,'about.html',{'students':students})
 #admin
 def login(request):
   frm =LoginForm(request.POST or None)
