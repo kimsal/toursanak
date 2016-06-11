@@ -111,6 +111,7 @@
 	<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
 		<center><h2>About team</h2></center>
 		<hr>
+        <label><h2>Core Team</h2></label>
 	</div>
 	<!--profile student-->
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
@@ -124,15 +125,62 @@
                 </a>
             </div> 
            <div id="myProfile_{{student.id}}" class="modal fade" role="dialog">
-              <div class="modal-dialog" style="background-color: white;">
+              <div class="modal-dialog" style="background-color: white;border-radius:6px;">
                 <div class="modal-content">
                   <div class="modal-body">
                         <div class="fb-profile">
                             <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
-                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 5px;"/>
+                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 15px;"/>
                             <div class="fb-profile-text">
-                                <h4>Lead by: <b>{{student.name}}</b></h4>
-                                
+                                <h4><b>{{student.name}}</b></h4>
+                                <h5>Skill:</h5>
+                                <h5>Hobby:</h5>
+                                    <p style="font-size:15px;text-align:justify;">
+                                        {{student.description}}
+                                    </p>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            {% endfor %}
+            <!-- <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
+                <a class="thumbnail fancybox" rel="lightbox" href="http://placehold.it/300x320.png">
+                    <img class="img-responsive" alt="" src="http://placehold.it/320x320" />
+                    <div class='text-right'>
+                        <small class='text-muted'>Image Title</small>
+                    </div> 
+                </a>
+            </div>  -->
+        </div> <!-- list-group / end -->
+	</div>
+    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <hr>
+        <label><h2>Uni Student’s team</h2></label>
+    </div>
+    <!--profile student-->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+            padding-left: 0px; " >
+        <div class='list-group gallery'>
+            
+           {% for student in students%}
+            <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
+                <a href="#" data-toggle="modal" data-target="#myProfile_{{student.id}}" class="thumbnail fancybox" rel="lightbox">
+                    <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/{{student.profileimage}}"/>
+                </a>
+            </div> 
+           <div id="myProfile_{{student.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog" style="background-color: white;border-radius:6px;">
+                <div class="modal-content">
+                  <div class="modal-body">
+                        <div class="fb-profile">
+                            <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
+                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 15px;"/>
+                            <div class="fb-profile-text">
+                                <h4><b>{{student.name}}</b></h4>
+                                <h5>Skill:</h5>
                                 <p style="font-size:15px;text-align:justify;">
                                     {{student.description}}
                                 </p>
@@ -144,10 +192,6 @@
               </div>
             </div>
             {% endfor %}
-
-
-        
-
             <!-- <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
                 <a class="thumbnail fancybox" rel="lightbox" href="http://placehold.it/300x320.png">
                     <img class="img-responsive" alt="" src="http://placehold.it/320x320" />
@@ -157,7 +201,7 @@
                 </a>
             </div>  -->
         </div> <!-- list-group / end -->
-	</div>
+    </div>
 	<!--end profile-->
 	<!--pop up profile-->
 

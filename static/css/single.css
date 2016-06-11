@@ -17,6 +17,10 @@
     font-weight: 300;
     padding: 15px 5px;
 }
+.modal-body {
+    position: relative;
+    padding: 0px;
+}
 .panel {
     margin-bottom: 20px;
     background-color: #fff;
