@@ -118,25 +118,25 @@
             padding-left: 0px; " >
 		<div class='list-group gallery'>
             
-           {% for student in students%}
+           {% for core in coreteam%}
             <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
-                <a href="#" data-toggle="modal" data-target="#myProfile_{{student.id}}" class="thumbnail fancybox" rel="lightbox">
-                    <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/{{student.profileimage}}"/>
+                <a href="#" data-toggle="modal" data-target="#myProfile_{{core.id}}" class="thumbnail fancybox" rel="lightbox">
+                    <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/{{core.profileimage}}"/>
                 </a>
             </div> 
-           <div id="myProfile_{{student.id}}" class="modal fade" role="dialog">
+           <div id="myProfile_{{core.id}}" class="modal fade" role="dialog">
               <div class="modal-dialog" style="background-color: white;border-radius:6px;">
                 <div class="modal-content">
                   <div class="modal-body">
                         <div class="fb-profile">
                             <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
-                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 15px;"/>
+                            <img align="left" class="fb-image-profile thumbnail" src="/{{core.profileimage}}" alt="" style="border-radius: 15px;"/>
                             <div class="fb-profile-text">
-                                <h4><b>{{student.name}}</b></h4>
+                                <h4><b>{{core.name}}</b></h4>
                                 <h5>Skill:</h5>
                                 <h5>Hobby:</h5>
                                     <p style="font-size:15px;text-align:justify;">
-                                        {{student.description}}
+                                        {{core.description}}
                                     </p>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
             padding-left: 0px; " >
         <div class='list-group gallery'>
             
-           {% for student in students%}
+           {% for student in studentteam%}
             <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
                 <a href="#" data-toggle="modal" data-target="#myProfile_{{student.id}}" class="thumbnail fancybox" rel="lightbox">
                     <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/{{student.profileimage}}"/>
