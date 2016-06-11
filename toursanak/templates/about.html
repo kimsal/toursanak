@@ -1,4 +1,3 @@
-
 {% include "partials/header.html" %}
 <!--start container-->
 <script type="text/javascript">
@@ -42,19 +41,19 @@
     </center>
 </div>
 <div class="container">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
-    		<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
                 <h2>About Toursanak</h2>
             </div>
         <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
-	</div>
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-		<div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
-			<p class="description" style="font-size:15px;text-align:justify;">
-				Toursanak is an adventure travel experience with operations based in Phnom Penh and expanding outward. Programs are designed to encourage youth and adults to step out of their comfort zones. We are all about self-exploration, self-determination, self-development, while fostering team spirit and a collaborative mindset. 
-			</p>
+            <p class="description" style="font-size:15px;text-align:justify;">
+                Toursanak is an adventure travel experience with operations based in Phnom Penh and expanding outward. Programs are designed to encourage youth and adults to step out of their comfort zones. We are all about self-exploration, self-determination, self-development, while fostering team spirit and a collaborative mindset. 
+            </p>
             <p class="description" style="font-size:15px;text-align:justify;">
                 We are an educational adventure company. We organize and customize trips for educational institutions and adventure lovers who want to explore hidden places and to learn about Cambodian culture. 
             </p>
@@ -106,75 +105,58 @@
             </p>
             </li>
             </div>
-		  <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" ></div>
-	</div>
-	<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
-		<center><h2>About team</h2></center>
-		<hr>
+          <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" ></div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <center><h2>About team</h2></center>
+        <hr>
         <label><h2>Core Team</h2></label>
-	</div>
-	<!--profile student-->
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
+    </div>
+    <!--profile student-->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
             padding-left: 0px; " >
-		<div class='list-group gallery'>
+        <div class='list-group gallery'>
             
-           {% for core in coreteam %}
+           {% for student in coreteam%}
             <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
-                <a href="#" data-toggle="modal" data-target="#myProfile_{{core.id}}" class="thumbnail fancybox" rel="lightbox">
-                    <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/{{core.profileimage}}"/>
+                <a href="#" data-toggle="modal" data-target="#myProfile_{{student.id}}" class="thumbnail fancybox" rel="lightbox">
+                    <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/{{student.profileimage}}"/>
                 </a>
             </div> 
 
-            <div id="myProfile_{{student.id}}" class="modal fade" role="dialog">
-                <div class="modal-dialog" style="background-color: white;border-radius:6px;">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background:white;border-radius:6px;padding:0px;">
-                                <div class="fb-profile">
-                                    <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
-                                    <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 15px;"/>
-                                    <div class="fb-profile-text">
-                                        <h4><b>{{student.name}}</b></h4>
-                                        <h5>Skill: {{student.skill}}</h5>
-                                        <h5>Hobby: {{student.hobby}}</h5>
-                                        <div class="col-xs-12 col-sm-1 col-lg-1 col-md-1">
-                                            
-                                        </div>
-                                        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" style="background:white">
-                                            <p style="font-size:15px;text-align:justify;">
-                                                {{student.description}}
-                                            </p>
+                <div id="myProfile_{{student.id}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog" style="background-color: white;border-radius:6px;">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background:white;border-radius:6px;padding:0px;">
+                                    <div class="fb-profile">
+                                        <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
+                                        <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 15px;"/>
+
+                                        <div class="fb-profile-text">
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                                
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-7" style="background:white">
+                                                    <h4><b>{{student.name}}</b></h4>
+                                                <h5><b>Skill: {{student.skill}}</b></h5>
+                                                <h5><b>Hobby: {{student.hobby}}</b></h5>
+                                                <p style="font-size:15px;text-align:justify;">
+                                                    {{student.description}}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                      </div>
+                          </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-           <div id="myProfile_{{core.id}}" class="modal fade" role="dialog">
-                <div class="modal-dialog" style="background-color: white;border-radius:6px;">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="fb-profile"><!-- 
-                                <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/> -->
-                                <img align="left" class="fb-image-profile thumbnail" src="/{{core.profileimage}}" alt="" style="border-radius: 15px;"/>
-                                <div class="fb-profile-text">
-                                    <h4><b>{{core.name}}</b></h4>
-                                    <h5>Skill: {{core.skill}}</h5>
-                                    <h5>Hobby: {{core.hobby}}</h5>
-                                    <p style="font-size:15px;text-align:justify;">
-                                        {{core.description}}
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                  </div>
-                </div> <!-- list-group / end -->
-            </div>
             {% endfor %}
-  
+           
+        </div> <!-- list-group / end -->
+    </div>
     <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
         <hr>
         <label><h2>Uni Student’s team</h2></label>
@@ -183,7 +165,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style=" padding-right: 0px;
             padding-left: 0px; " >
         <div class='list-group gallery'>
-           {% for student in studentteam %}
+           {% for student in studentteam%}
             <div class='col-sm-4 col-xs-12 col-md-3 col-lg-3'>
                 <a href="#" data-toggle="modal" data-target="#myProfile_{{student.id}}" class="thumbnail fancybox" rel="lightbox">
                     <img style="height:200px;width:100%;" class="img-responsive" alt="" src="/{{student.profileimage}}"/>
@@ -194,14 +176,12 @@
                 <div class="modal-content">
                   <div class="modal-body">
                         <div class="fb-profile">
-                            <!-- <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg" title="{{student.name}}"/> -->
-                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" title="{{student.name}}" style="border-radius: 15px;"/>
+                            <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
+                            <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 15px;"/>
                             <div class="fb-profile-text">
                                 <h4><b>{{student.name}}</b></h4>
-                                <h5>Skill: {{student.skill}}</h5>
-                                <div class="col-xs-12 col-sm-1 col-lg-1 col-md-1">
-                                    
-                                </div>
+                                <h5>Skill:</h5>
+                                <div class="col-xs-12 col-sm-1 col-lg-1 col-md-1"></div>
                                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" style="background:white">
                                     <p style="font-size:15px;text-align:justify;">
                                         {{student.description}}
@@ -211,32 +191,34 @@
                         </div>
                   </div>
                 </div>
+
               </div>
             </div>
             {% endfor %}
-	<!--end profile-->
-	<!--pop up profile-->
+         
+        </div> <!-- list-group / end -->
+    </div>
+    <!--end profile-->
+    <!--pop up profile-->
 
-	<!--end pop up profile-->
+    <!--end pop up profile-->
 </div>
 <div class="container">
-	
+    
 </div>
 </body>
 </html>
 <style type="text/css">
-	.gallery
+    .gallery
 {
     display: inline-block;
     margin-top: 20px;
 }
-
 .fb-profile img.fb-image-lg{
     z-index: 0;
     width: 100%;  
     margin-bottom: 10px;
 }
-
 .fb-image-profile
 {
     margin: -90px 10px 0px 50px;
@@ -255,8 +237,6 @@
     -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
     box-shadow: 0 3px 9px rgba(0,0,0,.5);
 }
-
-
 @media (max-width:768px)
 {
     
@@ -277,14 +257,13 @@
 }
 }
 h2{
-	font-family: 'Ubuntu',sans-serif;
+    font-family: 'Ubuntu',sans-serif;
     font-weight: 700;
     color: #0d579b;
     font-size: 160%;
-
 }
 p{
-	    display: block;
+        display: block;
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
     -webkit-margin-start: 0px;
