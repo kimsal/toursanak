@@ -21,6 +21,18 @@
     position: relative;
     padding: 0px;
 }
+.modal-content {
+    position: relative;
+    background-color: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid black;
+    border: 1px solid black;
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
 .panel {
     margin-bottom: 20px;
     background-color: #fff;
