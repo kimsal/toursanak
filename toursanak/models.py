@@ -36,7 +36,7 @@ class StudentProfile(models.Model):
 	description=models.TextField(null=True,blank=True)
 	profileimage=models.ImageField(upload_to = 'static/images/profiles/',null=True,blank=True)
 	published_at=models.DateTimeField(db_index=True,auto_now_add=True)
-	option= models.IntegerField(max_length=256, choices=[(1, 'Student Team'), (2, 'Core Team')])
+	option= models.IntegerField(max_length=256, choices=[(1, 'Student Team'), (2, 'Core Team')],default=1)
 	def __str__(self):
   		return self.name
   	def __unicode__(self):
@@ -53,6 +53,7 @@ class Tour(models.Model):
 	category=models.ForeignKey(Category, on_delete=models.CASCADE)
 	studentprofile=models.ForeignKey(StudentProfile,null=True,blank=True)
 	map=models.TextField(null=True,blank=True)
+	SetFeature = models.IntegerField(max_length=256, choices=[(1, 'No'), (2, 'Yes')],default=1)
 	#map=models.TextField()
 	created_by=models.ForeignKey(User,editable=False,on_delete=models.CASCADE,null=True,blank=True)
 	published_at=models.DateTimeField(db_index=True,auto_now_add=True)

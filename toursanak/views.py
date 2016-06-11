@@ -10,8 +10,9 @@ from django.core.mail import EmailMessage
 from django.db.models import Q
 #db.execute('CREATE FULLTEXT INDEX toursanak_title ON toursanak_tour (title, body)')
 def index(request):
-  tours = Tour.objects.raw('select * from toursanak_tour ORDER BY toursanak_tour.id DESC limit 15')
-  return render(request,'index.html',{'tours':tours})
+  feature_tours = Tour.objects.raw('select * from toursanak_tour where setFeature= 2 ORDER BY toursanak_tour.id DESC')
+  tours = Tour.objects.raw('select * from toursanak_tour where setFeature <> 2 ORDER BY toursanak_tour.id DESC limit 15')
+  return render(request,'index.html',{'tours':tours,'feature_tours': feature_tours})
 def contact(request):
   frm =ContactForm(request.POST or None)
   context={
