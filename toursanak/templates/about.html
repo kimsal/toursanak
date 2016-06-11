@@ -138,7 +138,7 @@
                                                 
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-7" style="background:white">
-                                                    <h4><b>{{student.name}}</b></h4>
+                                                <h4><b>{{student.name}}</b></h4>
                                                 <h5><b>Skill: {{student.skill}}</b></h5>
                                                 <h5><b>Hobby: {{student.hobby}}</b></h5>
                                                 <p style="font-size:15px;text-align:justify;">
@@ -179,10 +179,12 @@
                             <img align="left" class="fb-image-lg" src="/static/images/banner/about-page_banner.jpg"/>
                             <img align="left" class="fb-image-profile thumbnail" src="/{{student.profileimage}}" alt="" style="border-radius: 15px;"/>
                             <div class="fb-profile-text">
-                                <h4><b>{{student.name}}</b></h4>
-                                <h5>Skill:</h5>
-                                <div class="col-xs-12 col-sm-1 col-lg-1 col-md-1"></div>
+                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                </div>
                                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9" style="background:white">
+                                     <h4><b>{{student.name}}</b></h4>
+                                    <h5><b>Skill: {{student.skill}}</b></h5>
+                                    <h5><b>Hobby: {{student.hobby}}</b></h5>
                                     <p style="font-size:15px;text-align:justify;">
                                         {{student.description}}
                                     </p>
