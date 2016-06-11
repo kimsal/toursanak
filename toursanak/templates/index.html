@@ -2,6 +2,23 @@
     <div class="container" >
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="wrap" style=" padding-right: 0px;
             padding-left: 0px; " >
+            {% for tour in feature_tours %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding:10px;">
+                    <div class="hovereffect">
+                        <a href="{% url 'single' tour.slug %}">
+                        {% if tour.feature_image == none %}
+                          <img class="img-responsive " src="/static/images/notfound.png" alt="">
+                        {% else %}
+                             <img class="img-responsive" src="/{{tour.feature_image}}" alt="">
+                         {%endif%}   
+                        <div class="overlay">
+                            <h2> {{tour.title}}</h2>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+
              {% for tour in tours %}
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding:10px;">
                     <div class="hovereffect">

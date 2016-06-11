@@ -28,11 +28,15 @@ class Page(models.Model):
   		return self.name
 class StudentProfile(models.Model):
 	id=models.AutoField(primary_key=True)
-	name=models.CharField(max_length=30)
+	name=models.CharField(max_length=50)
 	email=models.CharField(max_length=50,null=True,blank=True)
+	position = models.CharField(max_length=50,null=True,blank=True)
+	hobby = models.CharField(max_length=150,null=True,blank=True)
+	skill = models.CharField(max_length=150,null=True,blank=True)
 	description=models.TextField(null=True,blank=True)
 	profileimage=models.ImageField(upload_to = 'static/images/profiles/',null=True,blank=True)
 	published_at=models.DateTimeField(db_index=True,auto_now_add=True)
+	option= models.IntegerField(max_length=256, choices=[(1, 'Student Team'), (2, 'Core Team')],default=1)
 	def __str__(self):
   		return self.name
   	def __unicode__(self):
@@ -49,6 +53,7 @@ class Tour(models.Model):
 	category=models.ForeignKey(Category, on_delete=models.CASCADE)
 	studentprofile=models.ForeignKey(StudentProfile,null=True,blank=True)
 	map=models.TextField(null=True,blank=True)
+	SetFeature = models.IntegerField(max_length=256, choices=[(1, 'No'), (2, 'Yes')],default=1)
 	#map=models.TextField()
 	created_by=models.ForeignKey(User,editable=False,on_delete=models.CASCADE,null=True,blank=True)
 	published_at=models.DateTimeField(db_index=True,auto_now_add=True)
