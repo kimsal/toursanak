@@ -38,7 +38,19 @@ function scrollToTop() {
 }
 
 });
-
+//footer for contact*/
+$(function(){
+    $(window).scroll(function() {  
+if($(document).scrollTop() > 20)
+{    
+      $('#footer').addClass("show");
+}
+else
+{
+    $('#footer').removeClass("show");
+}
+        });
+    })
 
 
 
