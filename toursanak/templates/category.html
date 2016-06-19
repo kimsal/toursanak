@@ -1,4 +1,48 @@
 {% include "partials/header.html" %}
+<!--slider-->
+            <div class="span12" style="margin-top:-15px;">
+              <div id="owl-example" class="owl-carousel">
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Development & Culture Program - 17 days ...</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+
+                 
+              </div>
+            </div>
+          <!--end slider-->
 <div class="container">
    <!--  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="panel panel-default" style="padding: 0px; margin: 0px;">
@@ -67,5 +111,16 @@ window.onscroll = yHandler;
   </span>
 </div>
 <!--end scroll to top-->
+<!--slider up-->
+    <script>
+      $(document).ready(function($) {
+        $("#owl-example").owlCarousel();
+      });
+      $("body").data("page", "frontpage");
+    </script>
+
+<!--end slide up-->
+
+
 </body>
 </html>

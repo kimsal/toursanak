@@ -1,5 +1,49 @@
 {% include "partials/header.html" %}
-    <div class="container" >
+   <!--slider-->
+            <div class="span12" style="margin-top:-15px;">
+              <div id="owl-example" class="owl-carousel">
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Development & Culture Program - 17 days ...</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+                <div class="item darkCyan">
+                  <a href="#">
+                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
+                      <h3>Koh Dach and Sihanouk</h3>
+                  </a>
+                </div>
+
+                 
+              </div>
+            </div>
+          <!--end slider-->
+  <div class="container" >
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="wrap" style=" padding-right: 0px;
             padding-left: 0px; " >
             {% for tour in feature_tours %}
@@ -79,5 +123,14 @@ window.onscroll = yHandler;
 <!--end scroll to top-->
 <div style="height:100px;">
 </div>
+<!--slider up-->
+    <script>
+      $(document).ready(function($) {
+        $("#owl-example").owlCarousel();
+      });
+      $("body").data("page", "frontpage");
+    </script>
+
+<!--end slide up-->
 </body>
 </html>
