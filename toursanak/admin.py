@@ -21,7 +21,7 @@ class TabAdmin(SuperModelAdmin):
 	inlines=(TabDetailInlineAdmin,)
 admin.site.register(Tour, TourAdmin)
 # admin.site.register(Tour)
-admin.site.register(Page)
+# admin.site.register(Page)
 admin.site.register(Category)
 # admin.site.register(Image)
 admin.site.register(Tab,TabAdmin)
