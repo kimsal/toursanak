@@ -21,6 +21,7 @@
 	line-height: 20px;
 	text-transform: uppercase;
 }
+
 #owl-example .item h3:hover{
 text-decoration: none;
 }
