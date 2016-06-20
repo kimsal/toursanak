@@ -37,6 +37,8 @@ text-decoration: none;
 
 .darkCyan{
 	background:rgba(33, 38, 33, 0.8);
+	opacity: 0.90;
+	padding-top: 1px;
 }
 /*.darkCyan:hover{
 	background-color: rgba(33, 38, 33, 0.8);
