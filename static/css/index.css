@@ -28,6 +28,9 @@
 .dropdown-submenu:hover>a:after {
     border-left-color:#555;
     }
+.h5{
+    color: white;
+}
 .dropdown-submenu.pull-left {
     float:none;
     }

@@ -21,7 +21,9 @@
 	line-height: 20px;
 	text-transform: uppercase;
 }
-
+.h5{
+	color: white;
+}
 #owl-example .item h3:hover{
 text-decoration: none;
 }
@@ -34,13 +36,15 @@ text-decoration: none;
 }
 
 .darkCyan{
-	background: #3fa765;
+	background:rgba(33, 38, 33, 0.8);
+	opacity: 0.90;
+	padding-top: 1px;
 }
-.darkCyan:hover{
-	background-color: #3fa765;
+/*.darkCyan:hover{
+	background-color: rgba(33, 38, 33, 0.8);
 	opacity: 0.96;
 }
-
+*/
 
 /* More Demo Box */
 
@@ -175,6 +179,9 @@ background: url('../img/AjaxLoader.gif') no-repeat center center #aebab6;
 	.navbar-fixed-top, .navbar-fixed-bottom {
 	position: fixed;
 	}
+	h5{
+		color: white;
+	}
 }
 @media (max-width: 768px) {
 	.navbar.navbar-fixed-top{
@@ -221,6 +228,7 @@ background: url('../img/AjaxLoader.gif') no-repeat center center #aebab6;
 	}
 	h5 {
 		font-size: 13px;
+		color: white;
 	}
 	h6 {
 		font-size: 12px;
