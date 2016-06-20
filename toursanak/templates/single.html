@@ -205,11 +205,13 @@ div.owl-controls.clickable{
                   <div class="modal-body">
                     
                     <!--slide-->
-                        <div id="owl-demo" class="owl-carousel owl-theme">
-                          <div class="item"><img src="/static/images/family-trip-1.png" alt="The Last of us"></div>
-                          <div class="item"><img src="/static/images/family-trip-1.png" alt="GTA V"></div>
-                          <div class="item"><img src="/static/images/family-trip-1.png" alt="Mirror Edge"></div>
-                        </div>
+                        <div id="owl-demo" class="owl-carousel owl-theme slide_body">
+                          <!-- <div class="item"><img src="/static/images/family-trip-1.png" alt="The Last of us"></div> -->
+
+                          <!-- <div class="item"><img src="/static/images/family-trip-1.png" alt="GTA V"></div>
+
+                          <div class="item"><img src="/static/images/family-trip-1.png" alt="Mirror Edge"></div>-->
+                        </div> 
             
                     <!--end slide-->
                     <!--old slide bootstrap-->
@@ -220,19 +222,18 @@ div.owl-controls.clickable{
                            
                             <div class="carousel-inner" style="border-radius: 3px;" id="slide_image">
                                
-                            </div>
+                            </div>-->
                             <script type="text/javascript">
-                                    var images="{{tour.imagename}}".split(',');
+                                
+                                var images="{{tour.imagename}}".split(',');
                                     images.push("{{tour.feature_image}}");
                                     for(var i=0;i<images.length;i++){
-                                        
-                                        if(i==0)
-                                            document.getElementById('slide_image').innerHTML+='<div class="item active"><img src="/'+images[i]+'" alt="NO"><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
-                                        else
-                                            document.getElementById('slide_image').innerHTML+='<div class="item"><img src="/'+images[i]+'" alt="NO" ><div class="header-text hidden-xs"><div class="col-md-12 text-center"><br><br></div></div></div>';
-                                        document.getElementById('point_slide').innerHTML+='<li data-target="#carousel-example-generic" data-slide-to="'+i+'" class="active"></li>';
+                                         $(".slide_body").append('<div class="item"><img src="/'+images[i]+'" alt=""></div>');
                                     }
-                                </script>
+
+                            </script>
+
+                                <!--
                         
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"  style="font-size: 16px;margin-right:10px;"></span>

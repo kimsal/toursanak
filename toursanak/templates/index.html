@@ -2,66 +2,25 @@
    <!--slider-->
             <div class="span12" style="margin-top:-20px;">
               <div id="owl-example" class="owl-carousel">
-                <div class="item darkCyan">
-                  <a href="#">
-                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
-                      <h5>Koh Dach and Sihanouk</h5>
-                  </a>
-                </div>
-                <div class="item darkCyan">
-                  <a href="#">
-                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
-                      <h5>Koh Dach and Sihanouk</h5>
-                  </a>
-                </div>
-                <div class="item darkCyan">
-                  <a href="#">
-                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
-                      <h5>Koh Dach and Sihanouk...</h5>
-                  </a>
-                </div>
-                <div class="item darkCyan">
-                  <a href="#">
-                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
-                      <h5>Koh Dach and Sihanouk...</h5>
-                  </a>
-                </div>
-                <div class="item darkCyan">
-                  <a href="#">
-                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
-                     <h5>Koh Dach and Sihanouk</h5>
-                  </a>
-                </div>
-                <div class="item darkCyan">
-                  <a href="#">
-                    <img src="/static/images/family-trip-1.png" alt="Touch" class="img-responsive">
-                      <h5>Koh Dach and Sihanouk</h5>
-                  </a>
-                </div>
-
-                 
+                {% for tour in feature_tours %}
+                    <div class="item darkCyan">
+                      <a href="{% url 'single' tour.slug %}">
+                         {% if tour.feature_image == none %}
+                          <img class="img-responsive" src="/static/images/notfound.png" alt="">
+                        {% else %}
+                             <img class="img-responsive" src="/{{tour.feature_image}}" alt="">
+                         {%endif%}   
+                          <h5>{{tour.title}}</h5>
+                      </a>
+                    </div>
+                {% endfor %}
               </div>
             </div>
           <!--end slider-->
   <div class="container" >
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="wrap" style=" padding-right: 0px;
             padding-left: 0px; " >
-            {% for tour in feature_tours %}
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding:10px;">
-                    <div class="hovereffect">
-                        <a href="{% url 'single' tour.slug %}">
-                        {% if tour.feature_image == none %}
-                          <img class="img-responsive " src="/static/images/notfound.png" alt="">
-                        {% else %}
-                             <img class="img-responsive" src="/{{tour.feature_image}}" alt="">
-                         {%endif%}   
-                        <div class="overlay">
-                            <h2> {{tour.title}}</h2>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
+           
 
              {% for tour in tours %}
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding:10px;">
